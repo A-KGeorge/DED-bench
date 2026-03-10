@@ -1,7 +1,7 @@
 {
   "source": "Verified_Historical_Facts_Benchmark",
   "version": "2.0",
-  "creation_date": "2026-03-10T15:57:22.980113",
+  "creation_date": "2026-03-10T16:45:32.362202",
   "total_cases": 153,
   "description": "Programmatically generated benchmark from verified historical records. All facts are publicly verifiable (Wikipedia, corporate records, government archives). Includes CEO positions and political leadership positions from 1975-2024. Each test case samples specific years within verified tenures and includes temporal distractors from predecessor/successor tenures to test temporal alignment.",
   "methodology": "For each leader's tenure, we sample 1-3 years (start, middle, end) and create documents from that year plus documents from other tenures (especially \u0431\u043b\u0438\u0437\u043a\u0438\u0445 ones) to test whether the system can correctly identify era-appropriate information.",
@@ -182,6 +182,13 @@
           "is_correct": false,
           "era": 2007,
           "person": "Steve Ballmer"
+        },
+        "from_2018": {
+          "text": "Satya Nadella served as CEO of Microsoft. Their tenure lasted from 2014 to 2024. Under their leadership, Microsoft continued its business operations. ",
+          "acquired": "2018-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2018,
+          "person": "Satya Nadella"
         }
       },
       "expected_winner": "from_1976",
@@ -353,13 +360,6 @@
           "era": 2015,
           "person": "Satya Nadella"
         },
-        "from_1987": {
-          "text": "Bill Gates served as CEO of Microsoft. Their tenure lasted from 1975 to 2000. Under their leadership, Microsoft continued its business operations. ",
-          "acquired": "1987-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1987,
-          "person": "Bill Gates"
-        },
         "from_2007": {
           "text": "Steve Ballmer served as CEO of Microsoft. Their tenure lasted from 2000 to 2014. Under their leadership, Microsoft continued its business operations. ",
           "acquired": "2007-06-15T00:00:00Z",
@@ -386,6 +386,13 @@
           "era": 2019,
           "person": "Satya Nadella"
         },
+        "from_1987": {
+          "text": "Bill Gates served as CEO of Microsoft. Their tenure lasted from 1975 to 2000. Under their leadership, Microsoft continued its business operations. ",
+          "acquired": "1987-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 1987,
+          "person": "Bill Gates"
+        },
         "from_2007": {
           "text": "Steve Ballmer served as CEO of Microsoft. Their tenure lasted from 2000 to 2014. Under their leadership, Microsoft continued its business operations. ",
           "acquired": "2007-06-15T00:00:00Z",
@@ -411,6 +418,13 @@
           "is_correct": true,
           "era": 2023,
           "person": "Satya Nadella"
+        },
+        "from_1987": {
+          "text": "Bill Gates served as CEO of Microsoft. Their tenure lasted from 1975 to 2000. Under their leadership, Microsoft continued its business operations. ",
+          "acquired": "1987-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 1987,
+          "person": "Bill Gates"
         },
         "from_2007": {
           "text": "Steve Ballmer served as CEO of Microsoft. Their tenure lasted from 2000 to 2014. Under their leadership, Microsoft continued its business operations. ",
@@ -629,6 +643,13 @@
           "era": 2016,
           "person": "Sundar Pichai"
         },
+        "from_2006": {
+          "text": "Eric Schmidt served as CEO of Google. Their tenure lasted from 2001 to 2011. Under their leadership, Google continued its business operations. ",
+          "acquired": "2006-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2006,
+          "person": "Eric Schmidt"
+        },
         "from_2013": {
           "text": "Larry Page served as CEO of Google. Their tenure lasted from 2011 to 2015. Under their leadership, Google continued its business operations. ",
           "acquired": "2013-06-15T00:00:00Z",
@@ -655,13 +676,6 @@
           "era": 2019,
           "person": "Sundar Pichai"
         },
-        "from_2006": {
-          "text": "Eric Schmidt served as CEO of Google. Their tenure lasted from 2001 to 2011. Under their leadership, Google continued its business operations. ",
-          "acquired": "2006-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2006,
-          "person": "Eric Schmidt"
-        },
         "from_2013": {
           "text": "Larry Page served as CEO of Google. Their tenure lasted from 2011 to 2015. Under their leadership, Google continued its business operations. ",
           "acquired": "2013-06-15T00:00:00Z",
@@ -687,13 +701,6 @@
           "is_correct": true,
           "era": 2023,
           "person": "Sundar Pichai"
-        },
-        "from_2006": {
-          "text": "Eric Schmidt served as CEO of Google. Their tenure lasted from 2001 to 2011. Under their leadership, Google continued its business operations. ",
-          "acquired": "2006-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2006,
-          "person": "Eric Schmidt"
         },
         "from_2013": {
           "text": "Larry Page served as CEO of Google. Their tenure lasted from 2011 to 2015. Under their leadership, Google continued its business operations. ",
@@ -1039,6 +1046,20 @@
           "is_correct": false,
           "era": 2007,
           "person": "Sam Palmisano"
+        },
+        "from_2016": {
+          "text": "Virginia Rometty served as CEO of IBM. Their tenure lasted from 2012 to 2020. Under their leadership, IBM continued its business operations. ",
+          "acquired": "2016-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2016,
+          "person": "Virginia Rometty"
+        },
+        "from_2021": {
+          "text": "Arvind Krishna served as CEO of IBM. Their tenure lasted from 2020 to 2024. Under their leadership, IBM continued its business operations. ",
+          "acquired": "2021-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2021,
+          "person": "Arvind Krishna"
         }
       },
       "expected_winner": "from_2001",
@@ -1072,13 +1093,6 @@
           "is_correct": false,
           "era": 2016,
           "person": "Virginia Rometty"
-        },
-        "from_2021": {
-          "text": "Arvind Krishna served as CEO of IBM. Their tenure lasted from 2020 to 2024. Under their leadership, IBM continued its business operations. ",
-          "acquired": "2021-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2021,
-          "person": "Arvind Krishna"
         }
       },
       "expected_winner": "from_2003",
@@ -1112,6 +1126,13 @@
           "is_correct": false,
           "era": 2016,
           "person": "Virginia Rometty"
+        },
+        "from_2021": {
+          "text": "Arvind Krishna served as CEO of IBM. Their tenure lasted from 2020 to 2024. Under their leadership, IBM continued its business operations. ",
+          "acquired": "2021-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2021,
+          "person": "Arvind Krishna"
         }
       },
       "expected_winner": "from_2007",
@@ -1171,6 +1192,13 @@
           "is_correct": true,
           "era": 2013,
           "person": "Virginia Rometty"
+        },
+        "from_1997": {
+          "text": "Louis Gerstner served as CEO of IBM. Their tenure lasted from 1993 to 2002. Under their leadership, IBM continued its business operations. ",
+          "acquired": "1997-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 1997,
+          "person": "Louis Gerstner"
         },
         "from_2007": {
           "text": "Sam Palmisano served as CEO of IBM. Their tenure lasted from 2002 to 2012. Under their leadership, IBM continued its business operations. ",
@@ -1238,13 +1266,6 @@
           "era": 2019,
           "person": "Virginia Rometty"
         },
-        "from_1997": {
-          "text": "Louis Gerstner served as CEO of IBM. Their tenure lasted from 1993 to 2002. Under their leadership, IBM continued its business operations. ",
-          "acquired": "1997-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1997,
-          "person": "Louis Gerstner"
-        },
         "from_2007": {
           "text": "Sam Palmisano served as CEO of IBM. Their tenure lasted from 2002 to 2012. Under their leadership, IBM continued its business operations. ",
           "acquired": "2007-06-15T00:00:00Z",
@@ -1278,6 +1299,13 @@
           "era": 2021,
           "person": "Arvind Krishna"
         },
+        "from_2007": {
+          "text": "Sam Palmisano served as CEO of IBM. Their tenure lasted from 2002 to 2012. Under their leadership, IBM continued its business operations. ",
+          "acquired": "2007-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2007,
+          "person": "Sam Palmisano"
+        },
         "from_2016": {
           "text": "Virginia Rometty served as CEO of IBM. Their tenure lasted from 2012 to 2020. Under their leadership, IBM continued its business operations. ",
           "acquired": "2016-06-15T00:00:00Z",
@@ -1303,13 +1331,6 @@
           "is_correct": true,
           "era": 2022,
           "person": "Arvind Krishna"
-        },
-        "from_2007": {
-          "text": "Sam Palmisano served as CEO of IBM. Their tenure lasted from 2002 to 2012. Under their leadership, IBM continued its business operations. ",
-          "acquired": "2007-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2007,
-          "person": "Sam Palmisano"
         },
         "from_2016": {
           "text": "Virginia Rometty served as CEO of IBM. Their tenure lasted from 2012 to 2020. Under their leadership, IBM continued its business operations. ",
@@ -1370,6 +1391,13 @@
           "era": 2009,
           "person": "Paul Otellini"
         },
+        "from_2015": {
+          "text": "Brian Krzanich served as CEO of Intel. Their tenure lasted from 2013 to 2018. Under their leadership, Intel continued its business operations. ",
+          "acquired": "2015-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2015,
+          "person": "Brian Krzanich"
+        },
         "from_2020": {
           "text": "Bob Swan served as CEO of Intel. Their tenure lasted from 2019 to 2021. Under their leadership, Intel continued its business operations. ",
           "acquired": "2020-06-15T00:00:00Z",
@@ -1402,6 +1430,20 @@
           "is_correct": false,
           "era": 2009,
           "person": "Paul Otellini"
+        },
+        "from_2015": {
+          "text": "Brian Krzanich served as CEO of Intel. Their tenure lasted from 2013 to 2018. Under their leadership, Intel continued its business operations. ",
+          "acquired": "2015-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2015,
+          "person": "Brian Krzanich"
+        },
+        "from_2020": {
+          "text": "Bob Swan served as CEO of Intel. Their tenure lasted from 2019 to 2021. Under their leadership, Intel continued its business operations. ",
+          "acquired": "2020-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2020,
+          "person": "Bob Swan"
         }
       },
       "expected_winner": "from_2001",
@@ -1475,13 +1517,6 @@
           "is_correct": false,
           "era": 2015,
           "person": "Brian Krzanich"
-        },
-        "from_2022": {
-          "text": "Pat Gelsinger served as CEO of Intel. Their tenure lasted from 2021 to 2024. Under their leadership, Intel continued its business operations. ",
-          "acquired": "2022-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2022,
-          "person": "Pat Gelsinger"
         }
       },
       "expected_winner": "from_2006",
@@ -1735,13 +1770,6 @@
           "era": 2020,
           "person": "Bob Swan"
         },
-        "from_2001": {
-          "text": "Craig Barrett served as CEO of Intel. Their tenure lasted from 1998 to 2005. Under their leadership, Intel continued its business operations. ",
-          "acquired": "2001-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2001,
-          "person": "Craig Barrett"
-        },
         "from_2009": {
           "text": "Paul Otellini served as CEO of Intel. Their tenure lasted from 2005 to 2013. Under their leadership, Intel continued its business operations. ",
           "acquired": "2009-06-15T00:00:00Z",
@@ -1755,6 +1783,13 @@
           "is_correct": false,
           "era": 2015,
           "person": "Brian Krzanich"
+        },
+        "from_2022": {
+          "text": "Pat Gelsinger served as CEO of Intel. Their tenure lasted from 2021 to 2024. Under their leadership, Intel continued its business operations. ",
+          "acquired": "2022-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2022,
+          "person": "Pat Gelsinger"
         }
       },
       "expected_winner": "from_2020",
@@ -1774,6 +1809,13 @@
           "is_correct": true,
           "era": 2022,
           "person": "Pat Gelsinger"
+        },
+        "from_2001": {
+          "text": "Craig Barrett served as CEO of Intel. Their tenure lasted from 1998 to 2005. Under their leadership, Intel continued its business operations. ",
+          "acquired": "2001-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2001,
+          "person": "Craig Barrett"
         },
         "from_2015": {
           "text": "Brian Krzanich served as CEO of Intel. Their tenure lasted from 2013 to 2018. Under their leadership, Intel continued its business operations. ",
@@ -2348,20 +2390,6 @@
           "is_correct": false,
           "era": 2005,
           "person": "George W. Bush"
-        },
-        "from_2013": {
-          "text": "Barack Obama served as President of United States. Their tenure lasted from 2009 to 2017. During this period, Barack Obama led the country's government. ",
-          "acquired": "2013-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2013,
-          "person": "Barack Obama"
-        },
-        "from_2022": {
-          "text": "Joe Biden served as President of United States. Their tenure lasted from 2021 to 2024. During this period, Joe Biden led the country's government. ",
-          "acquired": "2022-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2022,
-          "person": "Joe Biden"
         }
       },
       "expected_winner": "from_1997",
@@ -2575,6 +2603,13 @@
           "era": 2013,
           "person": "Barack Obama"
         },
+        "from_1997": {
+          "text": "Bill Clinton served as President of United States. Their tenure lasted from 1993 to 2001. During this period, Bill Clinton led the country's government. ",
+          "acquired": "1997-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 1997,
+          "person": "Bill Clinton"
+        },
         "from_2005": {
           "text": "George W. Bush served as President of United States. Their tenure lasted from 2001 to 2009. During this period, George W. Bush led the country's government. ",
           "acquired": "2005-06-15T00:00:00Z",
@@ -2588,13 +2623,6 @@
           "is_correct": false,
           "era": 2019,
           "person": "Donald Trump"
-        },
-        "from_2022": {
-          "text": "Joe Biden served as President of United States. Their tenure lasted from 2021 to 2024. During this period, Joe Biden led the country's government. ",
-          "acquired": "2022-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2022,
-          "person": "Joe Biden"
         }
       },
       "expected_winner": "from_2013",
@@ -2728,6 +2756,13 @@
           "era": 2020,
           "person": "Donald Trump"
         },
+        "from_2005": {
+          "text": "George W. Bush served as President of United States. Their tenure lasted from 2001 to 2009. During this period, George W. Bush led the country's government. ",
+          "acquired": "2005-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2005,
+          "person": "George W. Bush"
+        },
         "from_2013": {
           "text": "Barack Obama served as President of United States. Their tenure lasted from 2009 to 2017. During this period, Barack Obama led the country's government. ",
           "acquired": "2013-06-15T00:00:00Z",
@@ -2761,13 +2796,6 @@
           "era": 2022,
           "person": "Joe Biden"
         },
-        "from_2005": {
-          "text": "George W. Bush served as President of United States. Their tenure lasted from 2001 to 2009. During this period, George W. Bush led the country's government. ",
-          "acquired": "2005-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2005,
-          "person": "George W. Bush"
-        },
         "from_2019": {
           "text": "Donald Trump served as President of United States. Their tenure lasted from 2017 to 2021. During this period, Donald Trump led the country's government. ",
           "acquired": "2019-06-15T00:00:00Z",
@@ -2794,12 +2822,12 @@
           "era": 2022,
           "person": "Joe Biden"
         },
-        "from_2005": {
-          "text": "George W. Bush served as President of United States. Their tenure lasted from 2001 to 2009. During this period, George W. Bush led the country's government. ",
-          "acquired": "2005-06-15T00:00:00Z",
+        "from_2013": {
+          "text": "Barack Obama served as President of United States. Their tenure lasted from 2009 to 2017. During this period, Barack Obama led the country's government. ",
+          "acquired": "2013-06-15T00:00:00Z",
           "is_correct": false,
-          "era": 2005,
-          "person": "George W. Bush"
+          "era": 2013,
+          "person": "Barack Obama"
         },
         "from_2019": {
           "text": "Donald Trump served as President of United States. Their tenure lasted from 2017 to 2021. During this period, Donald Trump led the country's government. ",
@@ -2834,19 +2862,12 @@
           "era": 2002,
           "person": "Tony Blair"
         },
-        "from_2008": {
-          "text": "Gordon Brown served as Prime Minister of United Kingdom. Their tenure lasted from 2007 to 2010. During this period, Gordon Brown led the country's government. ",
-          "acquired": "2008-06-15T00:00:00Z",
+        "from_2017": {
+          "text": "Theresa May served as Prime Minister of United Kingdom. Their tenure lasted from 2016 to 2019. During this period, Theresa May led the country's government. ",
+          "acquired": "2017-06-15T00:00:00Z",
           "is_correct": false,
-          "era": 2008,
-          "person": "Gordon Brown"
-        },
-        "from_2020": {
-          "text": "Boris Johnson served as Prime Minister of United Kingdom. Their tenure lasted from 2019 to 2022. During this period, Boris Johnson led the country's government. ",
-          "acquired": "2020-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2020,
-          "person": "Boris Johnson"
+          "era": 2017,
+          "person": "Theresa May"
         }
       },
       "expected_winner": "from_1991",
@@ -2874,19 +2895,12 @@
           "era": 2002,
           "person": "Tony Blair"
         },
-        "from_2013": {
-          "text": "David Cameron served as Prime Minister of United Kingdom. Their tenure lasted from 2010 to 2016. During this period, David Cameron led the country's government. ",
-          "acquired": "2013-06-15T00:00:00Z",
+        "from_2022": {
+          "text": "Rishi Sunak served as Prime Minister of United Kingdom. Their tenure lasted from 2022 to 2024. During this period, Rishi Sunak led the country's government. ",
+          "acquired": "2022-06-15T00:00:00Z",
           "is_correct": false,
-          "era": 2013,
-          "person": "David Cameron"
-        },
-        "from_2017": {
-          "text": "Theresa May served as Prime Minister of United Kingdom. Their tenure lasted from 2016 to 2019. During this period, Theresa May led the country's government. ",
-          "acquired": "2017-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2017,
-          "person": "Theresa May"
+          "era": 2022,
+          "person": "Rishi Sunak"
         }
       },
       "expected_winner": "from_1993",
@@ -2914,19 +2928,19 @@
           "era": 2002,
           "person": "Tony Blair"
         },
+        "from_2013": {
+          "text": "David Cameron served as Prime Minister of United Kingdom. Their tenure lasted from 2010 to 2016. During this period, David Cameron led the country's government. ",
+          "acquired": "2013-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2013,
+          "person": "David Cameron"
+        },
         "from_2017": {
           "text": "Theresa May served as Prime Minister of United Kingdom. Their tenure lasted from 2016 to 2019. During this period, Theresa May led the country's government. ",
           "acquired": "2017-06-15T00:00:00Z",
           "is_correct": false,
           "era": 2017,
           "person": "Theresa May"
-        },
-        "from_2022": {
-          "text": "Rishi Sunak served as Prime Minister of United Kingdom. Their tenure lasted from 2022 to 2024. During this period, Rishi Sunak led the country's government. ",
-          "acquired": "2022-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2022,
-          "person": "Rishi Sunak"
         }
       },
       "expected_winner": "from_1996",
@@ -2960,13 +2974,6 @@
           "is_correct": false,
           "era": 2008,
           "person": "Gordon Brown"
-        },
-        "from_2017": {
-          "text": "Theresa May served as Prime Minister of United Kingdom. Their tenure lasted from 2016 to 2019. During this period, Theresa May led the country's government. ",
-          "acquired": "2017-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2017,
-          "person": "Theresa May"
         }
       },
       "expected_winner": "from_1998",
@@ -3107,13 +3114,6 @@
           "era": 2008,
           "person": "Gordon Brown"
         },
-        "from_1993": {
-          "text": "John Major served as Prime Minister of United Kingdom. Their tenure lasted from 1990 to 1997. During this period, John Major led the country's government. ",
-          "acquired": "1993-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1993,
-          "person": "John Major"
-        },
         "from_2002": {
           "text": "Tony Blair served as Prime Minister of United Kingdom. Their tenure lasted from 1997 to 2007. During this period, Tony Blair led the country's government. ",
           "acquired": "2002-06-15T00:00:00Z",
@@ -3127,6 +3127,13 @@
           "is_correct": false,
           "era": 2013,
           "person": "David Cameron"
+        },
+        "from_2017": {
+          "text": "Theresa May served as Prime Minister of United Kingdom. Their tenure lasted from 2016 to 2019. During this period, Theresa May led the country's government. ",
+          "acquired": "2017-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2017,
+          "person": "Theresa May"
         }
       },
       "expected_winner": "from_2008",
@@ -3187,13 +3194,6 @@
           "era": 2013,
           "person": "David Cameron"
         },
-        "from_1993": {
-          "text": "John Major served as Prime Minister of United Kingdom. Their tenure lasted from 1990 to 1997. During this period, John Major led the country's government. ",
-          "acquired": "1993-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1993,
-          "person": "John Major"
-        },
         "from_2008": {
           "text": "Gordon Brown served as Prime Minister of United Kingdom. Their tenure lasted from 2007 to 2010. During this period, Gordon Brown led the country's government. ",
           "acquired": "2008-06-15T00:00:00Z",
@@ -3207,6 +3207,13 @@
           "is_correct": false,
           "era": 2017,
           "person": "Theresa May"
+        },
+        "from_2020": {
+          "text": "Boris Johnson served as Prime Minister of United Kingdom. Their tenure lasted from 2019 to 2022. During this period, Boris Johnson led the country's government. ",
+          "acquired": "2020-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2020,
+          "person": "Boris Johnson"
         }
       },
       "expected_winner": "from_2013",
@@ -3227,13 +3234,6 @@
           "era": 2015,
           "person": "David Cameron"
         },
-        "from_2002": {
-          "text": "Tony Blair served as Prime Minister of United Kingdom. Their tenure lasted from 1997 to 2007. During this period, Tony Blair led the country's government. ",
-          "acquired": "2002-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2002,
-          "person": "Tony Blair"
-        },
         "from_2008": {
           "text": "Gordon Brown served as Prime Minister of United Kingdom. Their tenure lasted from 2007 to 2010. During this period, Gordon Brown led the country's government. ",
           "acquired": "2008-06-15T00:00:00Z",
@@ -3247,6 +3247,13 @@
           "is_correct": false,
           "era": 2017,
           "person": "Theresa May"
+        },
+        "from_2020": {
+          "text": "Boris Johnson served as Prime Minister of United Kingdom. Their tenure lasted from 2019 to 2022. During this period, Boris Johnson led the country's government. ",
+          "acquired": "2020-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2020,
+          "person": "Boris Johnson"
         }
       },
       "expected_winner": "from_2015",
@@ -3267,12 +3274,12 @@
           "era": 2017,
           "person": "Theresa May"
         },
-        "from_2002": {
-          "text": "Tony Blair served as Prime Minister of United Kingdom. Their tenure lasted from 1997 to 2007. During this period, Tony Blair led the country's government. ",
-          "acquired": "2002-06-15T00:00:00Z",
+        "from_1993": {
+          "text": "John Major served as Prime Minister of United Kingdom. Their tenure lasted from 1990 to 1997. During this period, John Major led the country's government. ",
+          "acquired": "1993-06-15T00:00:00Z",
           "is_correct": false,
-          "era": 2002,
-          "person": "Tony Blair"
+          "era": 1993,
+          "person": "John Major"
         },
         "from_2008": {
           "text": "Gordon Brown served as Prime Minister of United Kingdom. Their tenure lasted from 2007 to 2010. During this period, Gordon Brown led the country's government. ",
@@ -3307,13 +3314,6 @@
           "era": 2017,
           "person": "Theresa May"
         },
-        "from_1993": {
-          "text": "John Major served as Prime Minister of United Kingdom. Their tenure lasted from 1990 to 1997. During this period, John Major led the country's government. ",
-          "acquired": "1993-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1993,
-          "person": "John Major"
-        },
         "from_2008": {
           "text": "Gordon Brown served as Prime Minister of United Kingdom. Their tenure lasted from 2007 to 2010. During this period, Gordon Brown led the country's government. ",
           "acquired": "2008-06-15T00:00:00Z",
@@ -3327,6 +3327,13 @@
           "is_correct": false,
           "era": 2013,
           "person": "David Cameron"
+        },
+        "from_2020": {
+          "text": "Boris Johnson served as Prime Minister of United Kingdom. Their tenure lasted from 2019 to 2022. During this period, Boris Johnson led the country's government. ",
+          "acquired": "2020-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2020,
+          "person": "Boris Johnson"
         }
       },
       "expected_winner": "from_2017",
@@ -3387,13 +3394,6 @@
           "era": 2020,
           "person": "Boris Johnson"
         },
-        "from_2008": {
-          "text": "Gordon Brown served as Prime Minister of United Kingdom. Their tenure lasted from 2007 to 2010. During this period, Gordon Brown led the country's government. ",
-          "acquired": "2008-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2008,
-          "person": "Gordon Brown"
-        },
         "from_2013": {
           "text": "David Cameron served as Prime Minister of United Kingdom. Their tenure lasted from 2010 to 2016. During this period, David Cameron led the country's government. ",
           "acquired": "2013-06-15T00:00:00Z",
@@ -3407,6 +3407,13 @@
           "is_correct": false,
           "era": 2017,
           "person": "Theresa May"
+        },
+        "from_2022": {
+          "text": "Rishi Sunak served as Prime Minister of United Kingdom. Their tenure lasted from 2022 to 2024. During this period, Rishi Sunak led the country's government. ",
+          "acquired": "2022-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2022,
+          "person": "Rishi Sunak"
         }
       },
       "expected_winner": "from_2020",
@@ -3426,13 +3433,6 @@
           "is_correct": true,
           "era": 2023,
           "person": "Rishi Sunak"
-        },
-        "from_2008": {
-          "text": "Gordon Brown served as Prime Minister of United Kingdom. Their tenure lasted from 2007 to 2010. During this period, Gordon Brown led the country's government. ",
-          "acquired": "2008-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2008,
-          "person": "Gordon Brown"
         },
         "from_2017": {
           "text": "Theresa May served as Prime Minister of United Kingdom. Their tenure lasted from 2016 to 2019. During this period, Theresa May led the country's government. ",
@@ -3466,6 +3466,13 @@
           "is_correct": true,
           "era": 2023,
           "person": "Rishi Sunak"
+        },
+        "from_2013": {
+          "text": "David Cameron served as Prime Minister of United Kingdom. Their tenure lasted from 2010 to 2016. During this period, David Cameron led the country's government. ",
+          "acquired": "2013-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2013,
+          "person": "David Cameron"
         },
         "from_2017": {
           "text": "Theresa May served as Prime Minister of United Kingdom. Their tenure lasted from 2016 to 2019. During this period, Theresa May led the country's government. ",
@@ -3506,6 +3513,13 @@
           "is_correct": false,
           "era": 2009,
           "person": "Nicolas Sarkozy"
+        },
+        "from_2014": {
+          "text": "Fran\u00e7ois Hollande served as President of France. Their tenure lasted from 2012 to 2017. During this period, Fran\u00e7ois Hollande led the country's government. ",
+          "acquired": "2014-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2014,
+          "person": "Fran\u00e7ois Hollande"
         }
       },
       "expected_winner": "from_1996",
@@ -3844,13 +3858,6 @@
           "era": 2020,
           "person": "Emmanuel Macron"
         },
-        "from_2009": {
-          "text": "Nicolas Sarkozy served as President of France. Their tenure lasted from 2007 to 2012. During this period, Nicolas Sarkozy led the country's government. ",
-          "acquired": "2009-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2009,
-          "person": "Nicolas Sarkozy"
-        },
         "from_2014": {
           "text": "Fran\u00e7ois Hollande served as President of France. Their tenure lasted from 2012 to 2017. During this period, Fran\u00e7ois Hollande led the country's government. ",
           "acquired": "2014-06-15T00:00:00Z",
@@ -3876,6 +3883,13 @@
           "is_correct": true,
           "era": 2023,
           "person": "Emmanuel Macron"
+        },
+        "from_2001": {
+          "text": "Jacques Chirac served as President of France. Their tenure lasted from 1995 to 2007. During this period, Jacques Chirac led the country's government. ",
+          "acquired": "2001-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2001,
+          "person": "Jacques Chirac"
         },
         "from_2009": {
           "text": "Nicolas Sarkozy served as President of France. Their tenure lasted from 2007 to 2012. During this period, Nicolas Sarkozy led the country's government. ",
@@ -3916,6 +3930,13 @@
           "is_correct": false,
           "era": 2001,
           "person": "Gerhard Schr\u00f6der"
+        },
+        "from_2022": {
+          "text": "Olaf Scholz served as Chancellor of Germany. Their tenure lasted from 2021 to 2024. During this period, Olaf Scholz led the country's government. ",
+          "acquired": "2022-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2022,
+          "person": "Olaf Scholz"
         }
       },
       "expected_winner": "from_1983",
@@ -3942,6 +3963,13 @@
           "is_correct": false,
           "era": 2001,
           "person": "Gerhard Schr\u00f6der"
+        },
+        "from_2022": {
+          "text": "Olaf Scholz served as Chancellor of Germany. Their tenure lasted from 2021 to 2024. During this period, Olaf Scholz led the country's government. ",
+          "acquired": "2022-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2022,
+          "person": "Olaf Scholz"
         }
       },
       "expected_winner": "from_1990",
@@ -3975,13 +4003,6 @@
           "is_correct": false,
           "era": 2013,
           "person": "Angela Merkel"
-        },
-        "from_2022": {
-          "text": "Olaf Scholz served as Chancellor of Germany. Their tenure lasted from 2021 to 2024. During this period, Olaf Scholz led the country's government. ",
-          "acquired": "2022-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2022,
-          "person": "Olaf Scholz"
         }
       },
       "expected_winner": "from_1997",
@@ -4048,13 +4069,6 @@
           "is_correct": false,
           "era": 2013,
           "person": "Angela Merkel"
-        },
-        "from_2022": {
-          "text": "Olaf Scholz served as Chancellor of Germany. Their tenure lasted from 2021 to 2024. During this period, Olaf Scholz led the country's government. ",
-          "acquired": "2022-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2022,
-          "person": "Olaf Scholz"
         }
       },
       "expected_winner": "from_2001",
@@ -4174,13 +4188,6 @@
           "era": 2020,
           "person": "Angela Merkel"
         },
-        "from_1990": {
-          "text": "Helmut Kohl served as Chancellor of Germany. Their tenure lasted from 1982 to 1998. During this period, Helmut Kohl led the country's government. ",
-          "acquired": "1990-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1990,
-          "person": "Helmut Kohl"
-        },
         "from_2001": {
           "text": "Gerhard Schr\u00f6der served as Chancellor of Germany. Their tenure lasted from 1998 to 2005. During this period, Gerhard Schr\u00f6der led the country's government. ",
           "acquired": "2001-06-15T00:00:00Z",
@@ -4213,6 +4220,13 @@
           "is_correct": true,
           "era": 2022,
           "person": "Olaf Scholz"
+        },
+        "from_1990": {
+          "text": "Helmut Kohl served as Chancellor of Germany. Their tenure lasted from 1982 to 1998. During this period, Helmut Kohl led the country's government. ",
+          "acquired": "1990-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 1990,
+          "person": "Helmut Kohl"
         },
         "from_2013": {
           "text": "Angela Merkel served as Chancellor of Germany. Their tenure lasted from 2005 to 2021. During this period, Angela Merkel led the country's government. ",
@@ -4305,13 +4319,6 @@
           "is_correct": false,
           "era": 2010,
           "person": "Stephen Harper"
-        },
-        "from_2019": {
-          "text": "Justin Trudeau served as Prime Minister of Canada. Their tenure lasted from 2015 to 2024. During this period, Justin Trudeau led the country's government. ",
-          "acquired": "2019-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2019,
-          "person": "Justin Trudeau"
         }
       },
       "expected_winner": "from_1998",
@@ -4418,6 +4425,13 @@
           "is_correct": false,
           "era": 2010,
           "person": "Stephen Harper"
+        },
+        "from_2019": {
+          "text": "Justin Trudeau served as Prime Minister of Canada. Their tenure lasted from 2015 to 2024. During this period, Justin Trudeau led the country's government. ",
+          "acquired": "2019-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2019,
+          "person": "Justin Trudeau"
         }
       },
       "expected_winner": "from_2004",
@@ -4544,6 +4558,13 @@
           "era": 1998,
           "person": "Jean Chr\u00e9tien"
         },
+        "from_2004": {
+          "text": "Paul Martin served as Prime Minister of Canada. Their tenure lasted from 2003 to 2006. During this period, Paul Martin led the country's government. ",
+          "acquired": "2004-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2004,
+          "person": "Paul Martin"
+        },
         "from_2010": {
           "text": "Stephen Harper served as Prime Minister of Canada. Their tenure lasted from 2006 to 2015. During this period, Stephen Harper led the country's government. ",
           "acquired": "2010-06-15T00:00:00Z",
@@ -4569,20 +4590,6 @@
           "is_correct": true,
           "era": 2019,
           "person": "Justin Trudeau"
-        },
-        "from_1998": {
-          "text": "Jean Chr\u00e9tien served as Prime Minister of Canada. Their tenure lasted from 1993 to 2003. During this period, Jean Chr\u00e9tien led the country's government. ",
-          "acquired": "1998-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1998,
-          "person": "Jean Chr\u00e9tien"
-        },
-        "from_2004": {
-          "text": "Paul Martin served as Prime Minister of Canada. Their tenure lasted from 2003 to 2006. During this period, Paul Martin led the country's government. ",
-          "acquired": "2004-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2004,
-          "person": "Paul Martin"
         },
         "from_2010": {
           "text": "Stephen Harper served as Prime Minister of Canada. Their tenure lasted from 2006 to 2015. During this period, Stephen Harper led the country's government. ",
@@ -4642,20 +4649,6 @@
           "is_correct": false,
           "era": 2003,
           "person": "Junichiro Koizumi"
-        },
-        "from_2016": {
-          "text": "Shinzo Abe served as Prime Minister of Japan. Their tenure lasted from 2012 to 2020. During this period, Shinzo Abe led the country's government. ",
-          "acquired": "2016-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2016,
-          "person": "Shinzo Abe"
-        },
-        "from_2022": {
-          "text": "Fumio Kishida served as Prime Minister of Japan. Their tenure lasted from 2021 to 2024. During this period, Fumio Kishida led the country's government. ",
-          "acquired": "2022-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2022,
-          "person": "Fumio Kishida"
         }
       },
       "expected_winner": "from_1997",
@@ -4682,6 +4675,13 @@
           "is_correct": false,
           "era": 2003,
           "person": "Junichiro Koizumi"
+        },
+        "from_2020": {
+          "text": "Yoshihide Suga served as Prime Minister of Japan. Their tenure lasted from 2020 to 2021. During this period, Yoshihide Suga led the country's government. ",
+          "acquired": "2020-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2020,
+          "person": "Yoshihide Suga"
         }
       },
       "expected_winner": "from_1997",
@@ -4715,6 +4715,13 @@
           "is_correct": false,
           "era": 2016,
           "person": "Shinzo Abe"
+        },
+        "from_2022": {
+          "text": "Fumio Kishida served as Prime Minister of Japan. Their tenure lasted from 2021 to 2024. During this period, Fumio Kishida led the country's government. ",
+          "acquired": "2022-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2022,
+          "person": "Fumio Kishida"
         }
       },
       "expected_winner": "from_2002",
@@ -4749,12 +4756,12 @@
           "era": 2016,
           "person": "Shinzo Abe"
         },
-        "from_2022": {
-          "text": "Fumio Kishida served as Prime Minister of Japan. Their tenure lasted from 2021 to 2024. During this period, Fumio Kishida led the country's government. ",
-          "acquired": "2022-06-15T00:00:00Z",
+        "from_2020": {
+          "text": "Yoshihide Suga served as Prime Minister of Japan. Their tenure lasted from 2020 to 2021. During this period, Yoshihide Suga led the country's government. ",
+          "acquired": "2020-06-15T00:00:00Z",
           "is_correct": false,
-          "era": 2022,
-          "person": "Fumio Kishida"
+          "era": 2020,
+          "person": "Yoshihide Suga"
         }
       },
       "expected_winner": "from_2003",
@@ -4789,12 +4796,12 @@
           "era": 2016,
           "person": "Shinzo Abe"
         },
-        "from_2020": {
-          "text": "Yoshihide Suga served as Prime Minister of Japan. Their tenure lasted from 2020 to 2021. During this period, Yoshihide Suga led the country's government. ",
-          "acquired": "2020-06-15T00:00:00Z",
+        "from_2022": {
+          "text": "Fumio Kishida served as Prime Minister of Japan. Their tenure lasted from 2021 to 2024. During this period, Fumio Kishida led the country's government. ",
+          "acquired": "2022-06-15T00:00:00Z",
           "is_correct": false,
-          "era": 2020,
-          "person": "Yoshihide Suga"
+          "era": 2022,
+          "person": "Fumio Kishida"
         }
       },
       "expected_winner": "from_2005",
@@ -4813,86 +4820,6 @@
           "acquired": "2013-06-15T00:00:00Z",
           "is_correct": true,
           "era": 2013,
-          "person": "Shinzo Abe"
-        },
-        "from_1997": {
-          "text": "Ryutaro Hashimoto served as Prime Minister of Japan. Their tenure lasted from 1996 to 1998. During this period, Ryutaro Hashimoto led the country's government. ",
-          "acquired": "1997-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1997,
-          "person": "Ryutaro Hashimoto"
-        },
-        "from_2003": {
-          "text": "Junichiro Koizumi served as Prime Minister of Japan. Their tenure lasted from 2001 to 2006. During this period, Junichiro Koizumi led the country's government. ",
-          "acquired": "2003-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2003,
-          "person": "Junichiro Koizumi"
-        },
-        "from_2020": {
-          "text": "Yoshihide Suga served as Prime Minister of Japan. Their tenure lasted from 2020 to 2021. During this period, Yoshihide Suga led the country's government. ",
-          "acquired": "2020-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2020,
-          "person": "Yoshihide Suga"
-        }
-      },
-      "expected_winner": "from_2013",
-      "difficulty": "medium",
-      "reasoning": "Query asks about Japan in 2013 (Shinzo Abe), should prefer document from 2013 over others from different years",
-      "source": "verified_historical_records",
-      "verified": true
-    },
-    {
-      "query": "Who was the Prime Minister of Japan in 2016?",
-      "entity": "Japan",
-      "query_year": 2016,
-      "documents": {
-        "from_2016": {
-          "text": "Shinzo Abe served as Prime Minister of Japan. Their tenure lasted from 2012 to 2020. During this period, Shinzo Abe led the country's government. ",
-          "acquired": "2016-06-15T00:00:00Z",
-          "is_correct": true,
-          "era": 2016,
-          "person": "Shinzo Abe"
-        },
-        "from_1997": {
-          "text": "Ryutaro Hashimoto served as Prime Minister of Japan. Their tenure lasted from 1996 to 1998. During this period, Ryutaro Hashimoto led the country's government. ",
-          "acquired": "1997-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1997,
-          "person": "Ryutaro Hashimoto"
-        },
-        "from_2003": {
-          "text": "Junichiro Koizumi served as Prime Minister of Japan. Their tenure lasted from 2001 to 2006. During this period, Junichiro Koizumi led the country's government. ",
-          "acquired": "2003-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2003,
-          "person": "Junichiro Koizumi"
-        },
-        "from_2020": {
-          "text": "Yoshihide Suga served as Prime Minister of Japan. Their tenure lasted from 2020 to 2021. During this period, Yoshihide Suga led the country's government. ",
-          "acquired": "2020-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 2020,
-          "person": "Yoshihide Suga"
-        }
-      },
-      "expected_winner": "from_2016",
-      "difficulty": "hard",
-      "reasoning": "Query asks about Japan in 2016 (Shinzo Abe), should prefer document from 2016 over others from different years",
-      "source": "verified_historical_records",
-      "verified": true
-    },
-    {
-      "query": "Who was the Prime Minister of Japan in 2019?",
-      "entity": "Japan",
-      "query_year": 2019,
-      "documents": {
-        "from_2019": {
-          "text": "Shinzo Abe served as Prime Minister of Japan. Their tenure lasted from 2012 to 2020. During this period, Shinzo Abe led the country's government. ",
-          "acquired": "2019-06-15T00:00:00Z",
-          "is_correct": true,
-          "era": 2019,
           "person": "Shinzo Abe"
         },
         "from_2003": {
@@ -4915,6 +4842,86 @@
           "is_correct": false,
           "era": 2022,
           "person": "Fumio Kishida"
+        }
+      },
+      "expected_winner": "from_2013",
+      "difficulty": "medium",
+      "reasoning": "Query asks about Japan in 2013 (Shinzo Abe), should prefer document from 2013 over others from different years",
+      "source": "verified_historical_records",
+      "verified": true
+    },
+    {
+      "query": "Who was the Prime Minister of Japan in 2016?",
+      "entity": "Japan",
+      "query_year": 2016,
+      "documents": {
+        "from_2016": {
+          "text": "Shinzo Abe served as Prime Minister of Japan. Their tenure lasted from 2012 to 2020. During this period, Shinzo Abe led the country's government. ",
+          "acquired": "2016-06-15T00:00:00Z",
+          "is_correct": true,
+          "era": 2016,
+          "person": "Shinzo Abe"
+        },
+        "from_2003": {
+          "text": "Junichiro Koizumi served as Prime Minister of Japan. Their tenure lasted from 2001 to 2006. During this period, Junichiro Koizumi led the country's government. ",
+          "acquired": "2003-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2003,
+          "person": "Junichiro Koizumi"
+        },
+        "from_2020": {
+          "text": "Yoshihide Suga served as Prime Minister of Japan. Their tenure lasted from 2020 to 2021. During this period, Yoshihide Suga led the country's government. ",
+          "acquired": "2020-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2020,
+          "person": "Yoshihide Suga"
+        },
+        "from_2022": {
+          "text": "Fumio Kishida served as Prime Minister of Japan. Their tenure lasted from 2021 to 2024. During this period, Fumio Kishida led the country's government. ",
+          "acquired": "2022-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2022,
+          "person": "Fumio Kishida"
+        }
+      },
+      "expected_winner": "from_2016",
+      "difficulty": "hard",
+      "reasoning": "Query asks about Japan in 2016 (Shinzo Abe), should prefer document from 2016 over others from different years",
+      "source": "verified_historical_records",
+      "verified": true
+    },
+    {
+      "query": "Who was the Prime Minister of Japan in 2019?",
+      "entity": "Japan",
+      "query_year": 2019,
+      "documents": {
+        "from_2019": {
+          "text": "Shinzo Abe served as Prime Minister of Japan. Their tenure lasted from 2012 to 2020. During this period, Shinzo Abe led the country's government. ",
+          "acquired": "2019-06-15T00:00:00Z",
+          "is_correct": true,
+          "era": 2019,
+          "person": "Shinzo Abe"
+        },
+        "from_1997": {
+          "text": "Ryutaro Hashimoto served as Prime Minister of Japan. Their tenure lasted from 1996 to 1998. During this period, Ryutaro Hashimoto led the country's government. ",
+          "acquired": "1997-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 1997,
+          "person": "Ryutaro Hashimoto"
+        },
+        "from_2003": {
+          "text": "Junichiro Koizumi served as Prime Minister of Japan. Their tenure lasted from 2001 to 2006. During this period, Junichiro Koizumi led the country's government. ",
+          "acquired": "2003-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2003,
+          "person": "Junichiro Koizumi"
+        },
+        "from_2020": {
+          "text": "Yoshihide Suga served as Prime Minister of Japan. Their tenure lasted from 2020 to 2021. During this period, Yoshihide Suga led the country's government. ",
+          "acquired": "2020-06-15T00:00:00Z",
+          "is_correct": false,
+          "era": 2020,
+          "person": "Yoshihide Suga"
         }
       },
       "expected_winner": "from_2019",
@@ -5007,13 +5014,6 @@
           "is_correct": true,
           "era": 2022,
           "person": "Fumio Kishida"
-        },
-        "from_1997": {
-          "text": "Ryutaro Hashimoto served as Prime Minister of Japan. Their tenure lasted from 1996 to 1998. During this period, Ryutaro Hashimoto led the country's government. ",
-          "acquired": "1997-06-15T00:00:00Z",
-          "is_correct": false,
-          "era": 1997,
-          "person": "Ryutaro Hashimoto"
         },
         "from_2016": {
           "text": "Shinzo Abe served as Prime Minister of Japan. Their tenure lasted from 2012 to 2020. During this period, Shinzo Abe led the country's government. ",

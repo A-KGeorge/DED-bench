@@ -10,6 +10,10 @@ import json
 from datetime import datetime
 import random
 import re
+from pathlib import Path
+
+# Get script directory for relative paths
+SCRIPT_DIR = Path(__file__).parent
 
 def extract_year_from_question(question: str):
     """Extract 4-digit year from question."""
@@ -182,7 +186,7 @@ def create_additional_synthetic_cases():
 
 def main():
     # Load manual high-quality cases
-    manual_cases = load_manual_benchmark("cache/benchmarks/specific_date_benchmark.json")
+    manual_cases = load_manual_benchmark(SCRIPT_DIR / "cache/benchmarks/specific_date_benchmark_large.json")
     print(f"Loaded {len(manual_cases)} manual cases")
     
     # Generate additional synthetic cases
@@ -214,7 +218,7 @@ def main():
         "test_cases": unique_cases
     }
     
-    output_path = "cache/benchmarks/specific_date_benchmark_large.json"
+    output_path = SCRIPT_DIR / "cache/benchmarks/specific_date_benchmark_large.json"
     with open(output_path, 'w') as f:
         json.dump(benchmark, f, indent=2)
     

@@ -34,25 +34,14 @@ def run_custom_scale_pipeline(count: int):
     processor = TempQuestionsBatchProcessor()
     processor.process_full_pipeline(max_entries=None, total_count=count)  # Process all
     
-    # Step 4: Evaluate
+    # Done
     print("\n" + "=" * 80)
-    print("STEP 4: Evaluate with Decay Framework")
+    print("PIPELINE COMPLETE")
     print("=" * 80)
-    
-    benchmark_file = "cache/benchmarks/tempquestions_retrieval_large.json"
-    
-    result = subprocess.run([
-        sys.executable,
-        "evaluate_phase1.py",
-        "--benchmark", benchmark_file,
-        "--large"
-    ])
-    
-    if result.returncode == 0:
-        print("\nOK: Full pipeline complete!")
-        print(f"  Results saved to: {benchmark_file}")
-    else:
-        print(f"\nERROR: Evaluation failed with exit code {result.returncode}")
+    print("\nBenchmark saved to: cache/benchmarks/tempquestions_retrieval_large.json")
+    print("\nTo evaluate with Phase 2:")
+    print("  cd ../Phase 2")
+    print("  python evaluate_query_intent.py --benchmark ../TempQuestions/cache/benchmarks/tempquestions_retrieval_large.json")
 
 
 def run_demo_scale():
@@ -68,25 +57,16 @@ def run_demo_scale():
     processor = TempQuestionsBatchProcessor()
     processor.process_full_pipeline(max_entries=100, total_count=100)
     
-    # Evaluate
+    # Done
     print("\n" + "=" * 80)
-    print("STEP 4: Evaluate with Decay Framework")
+    print("DEMO COMPLETE")
     print("=" * 80)
-    
-    benchmark_file = "cache/benchmarks/tempquestions_retrieval_large.json"
-    
-    result = subprocess.run([
-        sys.executable,
-        "evaluate_phase1.py",
-        "--benchmark", benchmark_file,
-        "--large"
-    ])
-    
-    if result.returncode == 0:
-        print("\nOK: Demo complete!")
-        print(f"  Benchmark: {benchmark_file}")
-        print(f"\nTo run full 1000-entry scale:")
-        print(f"  python tempquestions_full_scale.py --full")
+    print("\nBenchmark saved to: cache/benchmarks/tempquestions_retrieval_large.json")
+    print("\nTo evaluate with Phase 2:")
+    print("  cd ../Phase 2")
+    print("  python evaluate_query_intent.py --benchmark ../TempQuestions/cache/benchmarks/tempquestions_retrieval_large.json")
+    print("\nTo run full scale:")
+    print("  python tempquestions_full_scale.py --count 2000")
 
 
 if __name__ == "__main__":

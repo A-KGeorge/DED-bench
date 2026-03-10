@@ -1,6 +1,17 @@
-*/venv
-*/__pycache__/
+# Python
 __pycache__/
 *.pyc
 *.pyo
+
+# Virtual environment
 venv/
+Phase 1/venv/
+
+# Large generated data files
+cache/
+TempQuestions/cache/*.json
+TempQuestions/cache/benchmarks/tempquestions_retrieval_large.json
+
+# Keep curated benchmarks:
+# - TempQuestions/cache/benchmarks/specific_date_benchmark_large.json
+# - TempQuestions/cache/benchmarks/verified_specific_date_benchmark.json

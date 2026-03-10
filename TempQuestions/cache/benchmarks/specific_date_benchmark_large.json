@@ -1,7 +1,7 @@
 {
   "source": "Specific_Date_Benchmark_Expanded",
   "version": "2.0",
-  "creation_date": "2026-03-10T15:31:12.011759",
+  "creation_date": "2026-03-10T17:00:38.256745",
   "total_cases": 61,
   "description": "Expanded benchmark for testing query temporal intent with explicit years. Includes manual high-quality cases plus additional synthetic cases. All documents contain era-appropriate correct information.",
   "test_cases": [

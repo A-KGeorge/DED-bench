@@ -12,6 +12,10 @@ from datetime import datetime
 from typing import List, Dict
 import time
 import random
+from pathlib import Path
+
+# Get script directory for relative paths
+SCRIPT_DIR = Path(__file__).parent
 
 # Wikidata SPARQL endpoint (kept for future use)
 WIKIDATA_SPARQL = "https://query.wikidata.org/sparql"
@@ -292,7 +296,7 @@ def main():
         "test_cases": all_test_cases
     }
     
-    output_path = "cache/benchmarks/verified_specific_date_benchmark.json"
+    output_path = SCRIPT_DIR / "cache/benchmarks/verified_specific_date_benchmark.json"
     with open(output_path, 'w') as f:
         json.dump(benchmark, f, indent=2)
     
