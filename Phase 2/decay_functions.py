@@ -212,3 +212,88 @@ def score_with_temporal_alignment(query_vec, doc_vec, query_intent,
     
     return base_score, aligned_score, alignment_multiplier
 
+
+# =====================================================================
+# PHASE 3: Graph + Era Matching Integration
+# =====================================================================
+
+def score_with_graph_and_alignment(query, query_vec, doc_vec, query_intent,
+                                  doc_acquired, knowledge_graph,  
+                                  doc_verified=None, doc_text=""):
+    """
+    Phase 3: Score document with graph matching + era adjustment.
+    
+    Override-when-confident strategy:
+    1. Try graph matching first
+    2. If graph match ≥ 0.8 (EXACT), use graph + era score
+    3. Else fallback to Phase 2 temporal alignment
+    
+    This handles cases where:
+    - Same person across years (continuity: Jassy 2021 vs 2024)
+    - Small year gaps insufficient for Phase 2 (2-5 years)
+    - Succession queries requiring graph structure
+    
+    Args:
+        query: Query string (for graph extraction)
+        query_vec: 385-dim query vector
+        doc_vec: 385-dim document vector
+        query_intent: Output from classify_temporal_intent()
+        doc_acquired: Document acquisition date
+        knowledge_graph: TemporalKnowledgeGraph instance
+        doc_verified: Document verification date (optional)
+        doc_text: Document text for content year extraction
+        
+    Returns:
+        (base_score, final_score, strategy, debug_info)
+        - base_score: Cosine similarity
+        - final_score: Graph+era or Phase 2 score
+        - strategy: "graph" | "phase2_fallback"
+        - debug_info: Dict with match details
+    """
+    import sys
+    sys.path.append('Phase 3')
+    from graph_matching import compute_graph_alignment, compute_era_adjusted_score
+    
+    # Base cosine similarity
+    base_score = np.dot(query_vec, doc_vec) / (np.linalg.norm(query_vec) * np.linalg.norm(doc_vec))
+    
+    # Try graph matching
+    graph_result = compute_graph_alignment(query, knowledge_graph, doc_acquired)
+    graph_score = graph_result["score"]
+    
+    debug_info = {
+        "graph_match_type": graph_result["match_type"],
+        "graph_score": graph_score,
+        "matched_entity": graph_result["matched_entity"]
+    }
+    
+    # Don't override on directional queries - graph lacks "before/after" reasoning
+    # Phase 2's directional gradients are superior for these cases
+    explicit_directional = query_intent.get("explicit_directional", False)
+    
+    # Override-when-confident: Use graph if high-confidence structural match
+    if graph_score >= 0.8 and not explicit_directional:  # EXACT or high NEAR_MATCH
+        # Apply era adjustment
+        query_year = query_intent.get("years", [None])[0] if query_intent.get("years") else None
+        era_score = compute_era_adjusted_score(graph_result, doc_acquired, query_year)
+        
+        # Combine base similarity with era-adjusted graph score
+        # Graph provides structural match, era provides temporal disambiguation
+        final_score = base_score * era_score
+        
+        debug_info["era_score"] = era_score
+        debug_info["strategy"] = "graph"
+        
+        return base_score, final_score, "graph", debug_info
+    
+    else:
+        # Fallback to Phase 2 temporal alignment
+        _, aligned_score, alignment_mult = score_with_temporal_alignment(
+            query_vec, doc_vec, query_intent, doc_acquired, doc_verified, doc_text
+        )
+        
+        debug_info["phase2_alignment"] = alignment_mult
+        debug_info["strategy"] = "phase2_fallback"
+        
+        return base_score, aligned_score, "phase2_fallback", debug_info
+

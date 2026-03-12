@@ -32,6 +32,8 @@ Example:
 
 **Together**: Phase 1 prevents overfitting to recent data, Phase 2 enables historical queries.
 
+**Full Pipeline Integration**: Phase 2 feeds into Phase 4 (epistemic modulation) which then feeds into Phase 3 (graph override). See [Full Pipeline Results](#full-pipeline-integration) below.
+
 ---
 
 ## What Phase 2 Implements

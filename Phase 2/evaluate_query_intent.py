@@ -35,8 +35,47 @@ from decay_functions import (
     embed_with_decay, 
     encode_query_with_intent,
     score_with_temporal_alignment,
+    score_with_graph_and_alignment,
     model
 )
+
+# Phase 3 imports (loaded conditionally)
+def load_phase3_graph(graph_facts_file: str):
+    """Load Phase 3 knowledge graph from facts file."""
+    phase3_path = Path(__file__).parent.parent / "Phase 3"
+    sys.path.insert(0, str(phase3_path))
+    
+    from knowledge_graph import TemporalKnowledgeGraph
+    import json
+    
+    with open(graph_facts_file, 'r') as f:
+        facts = json.load(f)
+    
+    graph = TemporalKnowledgeGraph()
+    
+    for case_id, case_data in facts.items():
+        if case_id == "_metadata":
+            continue
+        
+        for role_fact in case_data.get("roles", []):
+            graph.add_role_fact(
+                entity=role_fact["entity"],
+                role=role_fact["role"],
+                org=role_fact["org"],
+                start_date=role_fact["start_date"],
+                end_date=role_fact.get("end_date")
+            )
+        
+        for succession in case_data.get("successions", []):
+            graph.add_succession(
+                predecessor_entity=succession["predecessor"],
+                successor_entity=succession["successor"],
+                role=succession["role"],
+                org=succession["org"],
+                transition_date=succession["transition_date"]
+            )
+    
+    return graph
 
 
 def cosine_similarity(vec1, vec2):
@@ -45,14 +84,23 @@ def cosine_similarity(vec1, vec2):
 
 
 def evaluate_query_intent(benchmark_file: str = "cache/benchmarks/tempquestions_retrieval_large.json",
-                         verbose: bool = True, use_original: bool = False):
+                         verbose: bool = True, use_original: bool = False, use_graph: bool = False):
     """
     Evaluate Phase 2 query intent on TempQuestions.
     
     Args:
         benchmark_file: Path to JSON benchmark
         verbose: Print detailed results
+        use_original: Use original_question field (for temporal queries with years)
+        use_graph: Enable Phase 3 graph matching (override-when-confident)
     """
+    # Load Phase 3 knowledge graph if enabled
+    knowledge_graph = None
+    if use_graph:
+        graph_facts_path = Path(__file__).parent.parent / "Phase 3" / "graph_facts.json"
+        knowledge_graph = load_phase3_graph(str(graph_facts_path))
+        print(f"✓ Loaded Phase 3 knowledge graph: {knowledge_graph.graph.number_of_nodes()} nodes")
+        print()
     with open(benchmark_file, 'r') as f:
         data = json.load(f)
     
@@ -67,8 +115,11 @@ def evaluate_query_intent(benchmark_file: str = "cache/benchmarks/tempquestions_
         "standard_correct": 0,
         "phase1_correct": 0,
         "phase2_correct": 0,
+        "phase3_correct": 0 if use_graph else None,
         "phase2_over_phase1": 0,
+        "phase3_over_phase2": 0 if use_graph else None,
         "phase2_regressed": 0,
+        "phase3_regressed": 0 if use_graph else None,
     }
     
     intent_stats = {
@@ -79,11 +130,16 @@ def evaluate_query_intent(benchmark_file: str = "cache/benchmarks/tempquestions_
     }
     
     print("="*80)
-    print("PHASE 2 QUERY INTENT EVALUATION")
+    if use_graph:
+        print("PHASE 3 GRAPH MATCHING EVALUATION")
+    else:
+        print("PHASE 2 QUERY INTENT EVALUATION")
     print("="*80)
     print(f"Test cases: {len(test_cases)}")
     print(f"Mode: {'Verbose' if verbose else 'Quiet (large-scale)'}")
     print(f"Query source: {'original_question (temporal)' if use_original else 'query (present tense)'}")
+    if use_graph:
+        print(f"Graph matching: Enabled (override-when-confident)")
     print()
     
     for i, test in enumerate(test_cases, 1):
@@ -149,6 +205,17 @@ def evaluate_query_intent(benchmark_file: str = "cache/benchmarks/tempquestions_
         phase2_winner = doc2_key if doc2_sim_phase2 > doc1_sim_phase2 else doc1_key
         phase2_correct = (phase2_winner == expected)
         
+        # PHASE 3 (graph matching + era adjustment) - if enabled
+        if use_graph:
+            _, doc1_sim_phase3, doc1_strategy, doc1_debug = score_with_graph_and_alignment(
+                query, query_vec_phase2, doc1_vec, query_intent, doc1_acquired, knowledge_graph, doc_text=doc1["text"]
+            )
+            _, doc2_sim_phase3, doc2_strategy, doc2_debug = score_with_graph_and_alignment(
+                query, query_vec_phase2, doc2_vec, query_intent, doc2_acquired, knowledge_graph, doc2_verified, doc_text=doc2["text"]
+            )
+            phase3_winner = doc2_key if doc2_sim_phase3 > doc1_sim_phase3 else doc1_key
+            phase3_correct = (phase3_winner == expected)
+        
         # Update results
         if standard_correct:
             results["standard_correct"] += 1
@@ -156,6 +223,8 @@ def evaluate_query_intent(benchmark_file: str = "cache/benchmarks/tempquestions_
             results["phase1_correct"] += 1
         if phase2_correct:
             results["phase2_correct"] += 1
+        if use_graph and phase3_correct:
+            results["phase3_correct"] += 1
         
         # Track Phase 2 improvement
         if phase2_correct and not phase1_correct:
@@ -164,6 +233,13 @@ def evaluate_query_intent(benchmark_file: str = "cache/benchmarks/tempquestions_
                 intent_stats[preference]["phase2_helped"] += 1
         elif phase1_correct and not phase2_correct:
             results["phase2_regressed"] += 1
+        
+        # Track Phase 3 improvement
+        if use_graph:
+            if phase3_correct and not phase2_correct:
+                results["phase3_over_phase2"] += 1
+            elif phase2_correct and not phase3_correct:
+                results["phase3_regressed"] += 1
         
         if verbose:
             print(f"Case {i}: {query}")
@@ -174,10 +250,17 @@ def evaluate_query_intent(benchmark_file: str = "cache/benchmarks/tempquestions_
             print(f"  Standard: {'OK' if standard_correct else 'FAIL'} ({standard_winner})")
             print(f"  Phase 1:  {'OK' if phase1_correct else 'FAIL'} ({phase1_winner})")
             print(f"  Phase 2:  {'OK' if phase2_correct else 'FAIL'} ({phase2_winner}) (align: {doc1_key}={doc1_align:.2f}, {doc2_key}={doc2_align:.2f})")
+            if use_graph:
+                print(f"  Phase 3:  {'OK' if phase3_correct else 'FAIL'} ({phase3_winner}) (strategy: {doc1_strategy}/{doc2_strategy})")
             if phase2_correct and not phase1_correct:
                 print(f"  [+] Phase 2 rescued via temporal alignment!")
             elif phase1_correct and not phase2_correct:
                 print(f"  [-] Phase 2 regressed!")
+            if use_graph:
+                if phase3_correct and not phase2_correct:
+                    print(f"  [+] Phase 3 rescued via graph matching!")
+                elif phase2_correct and not phase3_correct:
+                    print(f"  [-] Phase 3 regressed!")
             print()
     
     # Print summary
@@ -189,10 +272,17 @@ def evaluate_query_intent(benchmark_file: str = "cache/benchmarks/tempquestions_
     print(f"Standard:  {results['standard_correct']}/{total} ({100*results['standard_correct']/total:.1f}%)")
     print(f"Phase 1:   {results['phase1_correct']}/{total} ({100*results['phase1_correct']/total:.1f}%)")
     print(f"Phase 2:   {results['phase2_correct']}/{total} ({100*results['phase2_correct']/total:.1f}%)")
+    if use_graph:
+        print(f"Phase 3:   {results['phase3_correct']}/{total} ({100*results['phase3_correct']/total:.1f}%)")
     print()
     print(f"Phase 2 over Phase 1: +{results['phase2_over_phase1']} cases")
     print(f"Phase 2 regressions:  -{results['phase2_regressed']} cases")
     print(f"Net improvement:      {results['phase2_over_phase1'] - results['phase2_regressed']:+d} cases")
+    if use_graph:
+        print()
+        print(f"Phase 3 over Phase 2: +{results['phase3_over_phase2']} cases")
+        print(f"Phase 3 regressions:  -{results['phase3_regressed']} cases")
+        print(f"Net improvement:      {results['phase3_over_phase2'] - results['phase3_regressed']:+d} cases")
     print()
     print("="*80)
     print("QUERY INTENT BREAKDOWN")
@@ -290,9 +380,11 @@ if __name__ == "__main__":
     parser.add_argument("--verbose", action="store_true", help="Show each case")
     parser.add_argument("--use-original", action="store_true", 
                         help="Use original_question field instead of query (for temporal queries with years)")
+    parser.add_argument("--use-graph", action="store_true",
+                        help="Enable Phase 3 graph matching (override-when-confident strategy)")
     args = parser.parse_args()
     
-    eval_results = evaluate_query_intent(args.benchmark, verbose=args.verbose, use_original=args.use_original)
+    eval_results = evaluate_query_intent(args.benchmark, verbose=args.verbose, use_original=args.use_original, use_graph=args.use_graph)
     
     # Write results to RESULTS.md
     write_results_to_file(eval_results)

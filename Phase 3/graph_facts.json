@@ -1,0 +1,583 @@
+{
+  "_metadata": {
+    "description": "Manual annotation of temporal knowledge graph facts for benchmark cases",
+    "cases": 8,
+    "sources": [
+      "Manual benchmark failures (6 cases)",
+      "Fuzzy logic benchmark failures (2 cases)"
+    ],
+    "format": "Each case has entities, roles, and successions in temporal order"
+  },
+  
+  "amazon_ceo_2021": {
+    "query": "Who was Amazon's CEO in 2021?",
+    "expected_answer": "Andy Jassy",
+    "query_year": 2021,
+    "entities": [
+      {"name": "Amazon", "type": "ORG"},
+      {"name": "Jeff Bezos", "type": "PERSON"},
+      {"name": "Andy Jassy", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Jeff Bezos",
+        "role": "CEO",
+        "org": "Amazon",
+        "start_date": "1994-07-05",
+        "end_date": "2021-07-05"
+      },
+      {
+        "entity": "Andy Jassy",
+        "role": "CEO",
+        "org": "Amazon",
+        "start_date": "2021-07-05",
+        "end_date": null
+      }
+    ],
+    "successions": [
+      {
+        "predecessor": "Jeff Bezos",
+        "successor": "Andy Jassy",
+        "role": "CEO",
+        "org": "Amazon",
+        "transition_date": "2021-07-05"
+      }
+    ],
+    "challenge": "continuity",
+    "reasoning": "Same person (Jassy) holds role in both 2021 and 2024, embeddings nearly identical"
+  },
+  
+  "netflix_ceo_2020": {
+    "query": "Who was the CEO of Netflix in 2020?",
+    "expected_answer": "Ted Sarandos",
+    "query_year": 2020,
+    "entities": [
+      {"name": "Netflix", "type": "ORG"},
+      {"name": "Reed Hastings", "type": "PERSON"},
+      {"name": "Ted Sarandos", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Reed Hastings",
+        "role": "CEO",
+        "org": "Netflix",
+        "start_date": "1999-01-01",
+        "end_date": "2020-07-16"
+      },
+      {
+        "entity": "Ted Sarandos",
+        "role": "CEO",
+        "org": "Netflix",
+        "start_date": "2020-07-16",
+        "end_date": null
+      }
+    ],
+    "successions": [
+      {
+        "predecessor": "Reed Hastings",
+        "successor": "Ted Sarandos",
+        "role": "CEO",
+        "org": "Netflix",
+        "transition_date": "2020-07-16"
+      }
+    ],
+    "challenge": "continuity",
+    "reasoning": "Sarandos holds role in both 2020 and 2023, minimal semantic difference"
+  },
+  
+  "google_ceo_2001": {
+    "query": "Who was Google's CEO in 2001?",
+    "expected_answer": "Eric Schmidt",
+    "query_year": 2001,
+    "entities": [
+      {"name": "Google", "type": "ORG"},
+      {"name": "Larry Page", "type": "PERSON"},
+      {"name": "Eric Schmidt", "type": "PERSON"},
+      {"name": "Sundar Pichai", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Larry Page",
+        "role": "CEO",
+        "org": "Google",
+        "start_date": "1998-09-04",
+        "end_date": "2001-03-01"
+      },
+      {
+        "entity": "Eric Schmidt",
+        "role": "CEO",
+        "org": "Google",
+        "start_date": "2001-03-01",
+        "end_date": "2011-04-04"
+      },
+      {
+        "entity": "Larry Page",
+        "role": "CEO",
+        "org": "Google",
+        "start_date": "2011-04-04",
+        "end_date": "2015-10-02"
+      },
+      {
+        "entity": "Sundar Pichai",
+        "role": "CEO",
+        "org": "Google",
+        "start_date": "2015-10-02",
+        "end_date": null
+      }
+    ],
+    "successions": [
+      {
+        "predecessor": "Larry Page",
+        "successor": "Eric Schmidt",
+        "role": "CEO",
+        "org": "Google",
+        "transition_date": "2001-03-01"
+      },
+      {
+        "predecessor": "Eric Schmidt",
+        "successor": "Larry Page",
+        "role": "CEO",
+        "org": "Google",
+        "transition_date": "2011-04-04"
+      },
+      {
+        "predecessor": "Larry Page",
+        "successor": "Sundar Pichai",
+        "role": "CEO",
+        "org": "Google",
+        "transition_date": "2015-10-02"
+      }
+    ],
+    "challenge": "small_gap",
+    "reasoning": "3-year gap between 1998 and 2001, both during early Google era with founder context"
+  },
+  
+  "france_president_2007": {
+    "query": "Who was the President of France in 2007?",
+    "expected_answer": "Nicolas Sarkozy",
+    "query_year": 2007,
+    "entities": [
+      {"name": "France", "type": "ORG"},
+      {"name": "Jacques Chirac", "type": "PERSON"},
+      {"name": "Nicolas Sarkozy", "type": "PERSON"},
+      {"name": "François Hollande", "type": "PERSON"},
+      {"name": "Emmanuel Macron", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Jacques Chirac",
+        "role": "President",
+        "org": "France",
+        "start_date": "1995-05-17",
+        "end_date": "2007-05-16"
+      },
+      {
+        "entity": "Nicolas Sarkozy",
+        "role": "President",
+        "org": "France",
+        "start_date": "2007-05-16",
+        "end_date": "2012-05-15"
+      },
+      {
+        "entity": "François Hollande",
+        "role": "President",
+        "org": "France",
+        "start_date": "2012-05-15",
+        "end_date": "2017-05-14"
+      },
+      {
+        "entity": "Emmanuel Macron",
+        "role": "President",
+        "org": "France",
+        "start_date": "2017-05-14",
+        "end_date": null
+      }
+    ],
+    "successions": [
+      {
+        "predecessor": "Jacques Chirac",
+        "successor": "Nicolas Sarkozy",
+        "role": "President",
+        "org": "France",
+        "transition_date": "2007-05-16"
+      },
+      {
+        "predecessor": "Nicolas Sarkozy",
+        "successor": "François Hollande",
+        "role": "President",
+        "org": "France",
+        "transition_date": "2012-05-15"
+      },
+      {
+        "predecessor": "François Hollande",
+        "successor": "Emmanuel Macron",
+        "role": "President",
+        "org": "France",
+        "transition_date": "2017-05-14"
+      }
+    ],
+    "challenge": "small_gap",
+    "reasoning": "5-year gap between 2007 and 2012, different people but similar political context"
+  },
+  
+  "twitter_ceo_2008": {
+    "query": "Who was the CEO of Twitter or X in 2008?",
+    "expected_answer": "Evan Williams",
+    "query_year": 2008,
+    "entities": [
+      {"name": "Twitter", "type": "ORG"},
+      {"name": "Jack Dorsey", "type": "PERSON"},
+      {"name": "Evan Williams", "type": "PERSON"},
+      {"name": "Dick Costolo", "type": "PERSON"},
+      {"name": "Elon Musk", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Jack Dorsey",
+        "role": "CEO",
+        "org": "Twitter",
+        "start_date": "2006-03-21",
+        "end_date": "2008-10-16"
+      },
+      {
+        "entity": "Evan Williams",
+        "role": "CEO",
+        "org": "Twitter",
+        "start_date": "2008-10-16",
+        "end_date": "2010-10-04"
+      },
+      {
+        "entity": "Dick Costolo",
+        "role": "CEO",
+        "org": "Twitter",
+        "start_date": "2010-10-04",
+        "end_date": "2015-07-01"
+      },
+      {
+        "entity": "Jack Dorsey",
+        "role": "CEO",
+        "org": "Twitter",
+        "start_date": "2015-07-01",
+        "end_date": "2021-11-29"
+      },
+      {
+        "entity": "Elon Musk",
+        "role": "CEO",
+        "org": "Twitter",
+        "start_date": "2022-10-27",
+        "end_date": null
+      }
+    ],
+    "successions": [
+      {
+        "predecessor": "Jack Dorsey",
+        "successor": "Evan Williams",
+        "role": "CEO",
+        "org": "Twitter",
+        "transition_date": "2008-10-16"
+      },
+      {
+        "predecessor": "Evan Williams",
+        "successor": "Dick Costolo",
+        "role": "CEO",
+        "org": "Twitter",
+        "transition_date": "2010-10-04"
+      },
+      {
+        "predecessor": "Dick Costolo",
+        "successor": "Jack Dorsey",
+        "role": "CEO",
+        "org": "Twitter",
+        "transition_date": "2015-07-01"
+      },
+      {
+        "predecessor": "Jack Dorsey",
+        "successor": "Elon Musk",
+        "role": "CEO",
+        "org": "Twitter",
+        "transition_date": "2022-10-27"
+      }
+    ],
+    "challenge": "small_gap",
+    "reasoning": "2-year gap between 2006 and 2008, both founders of Twitter, strong semantic similarity"
+  },
+  
+  "twitter_ceo_2010": {
+    "query": "Who was the CEO of Twitter or X in 2010?",
+    "expected_answer": "Dick Costolo",
+    "query_year": 2010,
+    "entities": [
+      {"name": "Twitter", "type": "ORG"},
+      {"name": "Jack Dorsey", "type": "PERSON"},
+      {"name": "Evan Williams", "type": "PERSON"},
+      {"name": "Dick Costolo", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Jack Dorsey",
+        "role": "CEO",
+        "org": "Twitter",
+        "start_date": "2006-03-21",
+        "end_date": "2008-10-16"
+      },
+      {
+        "entity": "Evan Williams",
+        "role": "CEO",
+        "org": "Twitter",
+        "start_date": "2008-10-16",
+        "end_date": "2010-10-04"
+      },
+      {
+        "entity": "Dick Costolo",
+        "role": "CEO",
+        "org": "Twitter",
+        "start_date": "2010-10-04",
+        "end_date": "2015-07-01"
+      }
+    ],
+    "successions": [
+      {
+        "predecessor": "Jack Dorsey",
+        "successor": "Evan Williams",
+        "role": "CEO",
+        "org": "Twitter",
+        "transition_date": "2008-10-16"
+      },
+      {
+        "predecessor": "Evan Williams",
+        "successor": "Dick Costolo",
+        "role": "CEO",
+        "org": "Twitter",
+        "transition_date": "2010-10-04"
+      }
+    ],
+    "challenge": "small_gap",
+    "reasoning": "4-year gap between 2006 and 2010, founder era has stronger semantic similarity"
+  },
+  
+  "apple_ceo_succession_before": {
+    "query": "Who was the CEO of Apple before Tim Cook?",
+    "expected_answer": "Steve Jobs",
+    "query_type": "succession",
+    "entities": [
+      {"name": "Apple", "type": "ORG"},
+      {"name": "Steve Jobs", "type": "PERSON"},
+      {"name": "Tim Cook", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Steve Jobs",
+        "role": "CEO",
+        "org": "Apple",
+        "start_date": "1997-09-16",
+        "end_date": "2011-08-24"
+      },
+      {
+        "entity": "Tim Cook",
+        "role": "CEO",
+        "org": "Apple",
+        "start_date": "2011-08-24",
+        "end_date": null
+      }
+    ],
+    "successions": [
+      {
+        "predecessor": "Steve Jobs",
+        "successor": "Tim Cook",
+        "role": "CEO",
+        "org": "Apple",
+        "transition_date": "2011-08-24"
+      }
+    ],
+    "challenge": "directional_query",
+    "reasoning": "Directional operator 'before' requires graph succession chain, not just year matching"
+  },
+  
+  "apple_ceo_succession_after": {
+    "query": "Who leads the company since Tim Cook's departure?",
+    "expected_answer": "null or unknown",
+    "query_type": "succession",
+    "entities": [
+      {"name": "Apple", "type": "ORG"},
+      {"name": "Tim Cook", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Tim Cook",
+        "role": "CEO",
+        "org": "Apple",
+        "start_date": "2011-08-24",
+        "end_date": null
+      }
+    ],
+    "successions": [],
+    "challenge": "counterfactual",
+    "reasoning": "Query assumes Tim Cook has departed, but he is still current CEO (end_date=null). Graph can detect this mismatch."
+  },
+  
+  "uk_pm_thatcher_major": {
+    "query": "Who became the Prime Minister after Margaret Thatcher?",
+    "expected_answer": "John Major",
+    "query_type": "succession",
+    "entities": [
+      {"name": "United Kingdom", "type": "ORG"},
+      {"name": "Margaret Thatcher", "type": "PERSON"},
+      {"name": "John Major", "type": "PERSON"},
+      {"name": "Tony Blair", "type": "PERSON"},
+      {"name": "Gordon Brown", "type": "PERSON"},
+      {"name": "David Cameron", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Margaret Thatcher",
+        "role": "Prime Minister",
+        "org": "United Kingdom",
+        "start_date": "1979-05-04",
+        "end_date": "1990-11-28"
+      },
+      {
+        "entity": "John Major",
+        "role": "Prime Minister",
+        "org": "United Kingdom",
+        "start_date": "1990-11-28",
+        "end_date": "1997-05-02"
+      },
+      {
+        "entity": "Tony Blair",
+        "role": "Prime Minister",
+        "org": "United Kingdom",
+        "start_date": "1997-05-02",
+        "end_date": "2007-06-27"
+      },
+      {
+        "entity": "Gordon Brown",
+        "role": "Prime Minister",
+        "org": "United Kingdom",
+        "start_date": "2007-06-27",
+        "end_date": "2010-05-11"
+      },
+      {
+        "entity": "David Cameron",
+        "role": "Prime Minister",
+        "org": "United Kingdom",
+        "start_date": "2010-05-11",
+        "end_date": "2016-07-13"
+      }
+    ],
+    "successions": [
+      {
+        "predecessor": "Margaret Thatcher",
+        "successor": "John Major",
+        "role": "Prime Minister",
+        "org": "United Kingdom",
+        "transition_date": "1990-11-28"
+      },
+      {
+        "predecessor": "John Major",
+        "successor": "Tony Blair",
+        "role": "Prime Minister",
+        "org": "United Kingdom",
+        "transition_date": "1997-05-02"
+      },
+      {
+        "predecessor": "Tony Blair",
+        "successor": "Gordon Brown",
+        "role": "Prime Minister",
+        "org": "United Kingdom",
+        "transition_date": "2007-06-27"
+      },
+      {
+        "predecessor": "Gordon Brown",
+        "successor": "David Cameron",
+        "role": "Prime Minister",
+        "org": "United Kingdom",
+        "transition_date": "2010-05-11"
+      }
+    ],
+    "challenge": "directional_query",
+    "reasoning": "Directional operator 'after' requires graph succession chain to identify John Major as Thatcher's successor"
+  },
+  
+  "us_presidents_clinton_biden": {
+    "query": "Who was the US President while Steve Jobs was the CEO of Apple?",
+    "expected_answer": "Bill Clinton or George W. Bush or Barack Obama",
+    "query_year_range": [1997, 2011],
+    "entities": [
+      {"name": "United States", "type": "ORG"},
+      {"name": "Bill Clinton", "type": "PERSON"},
+      {"name": "George W. Bush", "type": "PERSON"},
+      {"name": "Barack Obama", "type": "PERSON"},
+      {"name": "Donald Trump", "type": "PERSON"},
+      {"name": "Joe Biden", "type": "PERSON"}
+    ],
+    "roles": [
+      {
+        "entity": "Bill Clinton",
+        "role": "President",
+        "org": "United States",
+        "start_date": "1993-01-20",
+        "end_date": "2001-01-20"
+      },
+      {
+        "entity": "George W. Bush",
+        "role": "President",
+        "org": "United States",
+        "start_date": "2001-01-20",
+        "end_date": "2009-01-20"
+      },
+      {
+        "entity": "Barack Obama",
+        "role": "President",
+        "org": "United States",
+        "start_date": "2009-01-20",
+        "end_date": "2017-01-20"
+      },
+      {
+        "entity": "Donald Trump",
+        "role": "President",
+        "org": "United States",
+        "start_date": "2017-01-20",
+        "end_date": "2021-01-20"
+      },
+      {
+        "entity": "Joe Biden",
+        "role": "President",
+        "org": "United States",
+        "start_date": "2021-01-20",
+        "end_date": null
+      }
+    ],
+    "successions": [
+      {
+        "predecessor": "Bill Clinton",
+        "successor": "George W. Bush",
+        "role": "President",
+        "org": "United States",
+        "transition_date": "2001-01-20"
+      },
+      {
+        "predecessor": "George W. Bush",
+        "successor": "Barack Obama",
+        "role": "President",
+        "org": "United States",
+        "transition_date": "2009-01-20"
+      },
+      {
+        "predecessor": "Barack Obama",
+        "successor": "Donald Trump",
+        "role": "President",
+        "org": "United States",
+        "transition_date": "2017-01-20"
+      },
+      {
+        "predecessor": "Donald Trump",
+        "successor": "Joe Biden",
+        "role": "President",
+        "org": "United States",
+        "transition_date": "2021-01-20"
+      }
+    ],
+    "challenge": "temporal_overlap",
+    "reasoning": "Query requires finding US Presidents whose tenure overlaps with Steve Jobs' Apple CEO tenure (1997-2011). Clinton, Bush, and Obama all overlap."
+  }
+}

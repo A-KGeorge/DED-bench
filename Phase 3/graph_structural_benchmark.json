@@ -1,0 +1,146 @@
+[
+  {
+    "query": "Who was Amazon's CEO in 2021?",
+    "documents": {
+      "from_2021": {
+        "text": "Andy Jassy became Amazon CEO in July 2021, succeeding Jeff Bezos who founded the company in 1994.",
+        "acquired": "2021-07-15T10:00:00",
+        "is_correct": true
+      },
+      "from_2024": {
+        "text": "Andy Jassy continues as Amazon CEO in early 2024, maintaining the leadership role he assumed in 2021.",
+        "acquired": "2024-01-15T10:00:00",
+        "is_correct": false
+      }
+    },
+    "expected_winner": "from_2021",
+    "category": "continuity",
+    "challenge": "Same person (Andy Jassy) across years, embeddings nearly identical"
+  },
+  {
+    "query": "Who was the CEO of Netflix in 2020?",
+    "documents": {
+      "from_2020": {
+        "text": "Ted Sarandos became co-CEO of Netflix in July 2020, sharing the role with Reed Hastings.",
+        "acquired": "2020-07-20T10:00:00",
+        "is_correct": true
+      },
+      "from_2023": {
+        "text": "Ted Sarandos continues as Netflix co-CEO in 2023, following his appointment in 2020.",
+        "acquired": "2023-03-15T10:00:00",
+        "is_correct": false
+      }
+    },
+    "expected_winner": "from_2020",
+    "category": "continuity",
+    "challenge": "Same person (Ted Sarandos) across years, minimal semantic difference"
+  },
+  {
+    "query": "Who was Google's CEO in 2001?",
+    "documents": {
+      "from_2001": {
+        "text": "Eric Schmidt became Google CEO in March 2001, bringing executive experience to the young company founded by Larry Page and Sergey Brin.",
+        "acquired": "2001-03-15T10:00:00",
+        "is_correct": true
+      },
+      "from_1998": {
+        "text": "Larry Page co-founded Google in 1998 and served as CEO during the company's early startup phase.",
+        "acquired": "1998-09-10T10:00:00",
+        "is_correct": false
+      }
+    },
+    "expected_winner": "from_2001",
+    "category": "small_gap",
+    "challenge": "3-year gap, both during early Google era with founder context"
+  },
+  {
+    "query": "Who was the President of France in 2007?",
+    "documents": {
+      "from_2007": {
+        "text": "Nicolas Sarkozy became President of France in May 2007, succeeding Jacques Chirac.",
+        "acquired": "2007-05-20T10:00:00",
+        "is_correct": true
+      },
+      "from_2012": {
+        "text": "François Hollande became President of France in May 2012, succeeding Nicolas Sarkozy.",
+        "acquired": "2012-05-20T10:00:00",
+        "is_correct": false
+      }
+    },
+    "expected_winner": "from_2007",
+    "category": "small_gap",
+    "challenge": "5-year gap, different people but similar political context"
+  },
+  {
+    "query": "Who was the CEO of Twitter or X in 2008?",
+    "documents": {
+      "from_2008": {
+        "text": "Evan Williams became Twitter CEO in October 2008, taking over from co-founder Jack Dorsey.",
+        "acquired": "2008-10-20T10:00:00",
+        "is_correct": true
+      },
+      "from_2006": {
+        "text": "Jack Dorsey co-founded Twitter in 2006 and served as the company's first CEO.",
+        "acquired": "2006-07-15T10:00:00",
+        "is_correct": false
+      }
+    },
+    "expected_winner": "from_2008",
+    "category": "small_gap",
+    "challenge": "2-year gap, both founders of Twitter, strong semantic similarity"
+  },
+  {
+    "query": "Who was the CEO of Twitter or X in 2010?",
+    "documents": {
+      "from_2010": {
+        "text": "Dick Costolo became Twitter CEO in October 2010, succeeding Evan Williams.",
+        "acquired": "2010-10-10T10:00:00",
+        "is_correct": true
+      },
+      "from_2006": {
+        "text": "Jack Dorsey co-founded Twitter in 2006 and served as the company's first CEO during its early growth.",
+        "acquired": "2006-07-15T10:00:00",
+        "is_correct": false
+      }
+    },
+    "expected_winner": "from_2010",
+    "category": "small_gap",
+    "challenge": "4-year gap, founder era has stronger semantic similarity"
+  },
+  {
+    "query": "Who was the CEO of Apple before Tim Cook?",
+    "documents": {
+      "succession_correct": {
+        "text": "Steve Jobs served as Apple CEO from 1997 to 2011, when Tim Cook succeeded him.",
+        "acquired": "2011-08-30T10:00:00",
+        "is_correct": true
+      },
+      "wrong_predecessor": {
+        "text": "John Sculley was Apple CEO from 1983 to 1993, well before Tim Cook's appointment in 2011.",
+        "acquired": "1993-10-15T10:00:00",
+        "is_correct": false
+      }
+    },
+    "expected_winner": "succession_correct",
+    "category": "directional_query",
+    "challenge": "Directional operator 'before' requires graph succession chain"
+  },
+  {
+    "query": "Who leads the company since Tim Cook's departure?",
+    "documents": {
+      "factual_current": {
+        "text": "Tim Cook continues to lead Apple as CEO in 2024, a role he has held since 2011.",
+        "acquired": "2024-01-15T10:00:00",
+        "is_correct": true
+      },
+      "counterfactual": {
+        "text": "After Tim Cook's departure in 2023, Jeff Williams became Apple's new CEO.",
+        "acquired": "2023-09-15T10:00:00",
+        "is_correct": false
+      }
+    },
+    "expected_winner": "factual_current",
+    "category": "counterfactual",
+    "challenge": "Query assumes departure that hasn't happened, graph can detect this"
+  }
+]

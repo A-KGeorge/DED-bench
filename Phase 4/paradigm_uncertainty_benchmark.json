@@ -1,0 +1,323 @@
+{
+  "metadata": {
+    "name": "Paradigm and Uncertainty Decay Benchmark",
+    "description": "Test cases for paradigm scoping (λp) and uncertainty decay (λu) from Dynamic Epistemic Decay Framework",
+    "version": "1.0",
+    "dimensions_tested": ["paradigm_decay", "uncertainty_decay", "zero_decay_fragility"],
+    "total_cases": 30
+  },
+  "test_cases": [
+    {
+      "id": 1,
+      "category": "paradigm_scoped",
+      "statement": "In Newtonian mechanics, F=ma describes the relationship between force and acceleration",
+      "query": "What is the relationship between force and acceleration?",
+      "expected_paradigm": ["newtonian"],
+      "should_match_in_context": "classical physics",
+      "should_reject_in_context": "quantum mechanics at atomic scale",
+      "expected_confidence_classical": 1.0,
+      "expected_confidence_quantum": 0.0,
+      "notes": "Paradigm-scoped statement, valid only within Newtonian framework"
+    },
+    {
+      "id": 2,
+      "category": "paradigm_scoped",
+      "statement": "In Euclidean geometry, parallel lines never meet",
+      "query": "Do parallel lines ever meet?",
+      "expected_paradigm": ["euclidean"],
+      "should_match_in_context": "flat geometry",
+      "should_reject_in_context": "curved spacetime, non-Euclidean geometry",
+      "expected_confidence_euclidean": 1.0,
+      "expected_confidence_hyperbolic": 0.0,
+      "notes": "Classic paradigm scoping example - true in Euclidean, false in non-Euclidean"
+    },
+    {
+      "id": 3,
+      "category": "paradigm_contamination",
+      "statement": "The current Pope knows that 2+2=4",
+      "query": "Does 2+2=4?",
+      "expected_paradigm": [],
+      "has_zero_decay_component": true,
+      "is_contaminated": true,
+      "contamination_source": "temporal_mortal_entity",
+      "expected_confidence": 0.004,
+      "notes": "Zero-decay math truth contaminated by temporal 'current Pope' - fragility test"
+    },
+    {
+      "id": 4,
+      "category": "uncertainty_high",
+      "statement": "Scientists estimate the sun will explode in approximately 5 billion years",
+      "query": "When will the sun die?",
+      "uncertainty_markers": ["estimate", "approximately"],
+      "numerical_uncertainty": "approximately",
+      "expected_confidence_range": [0.65, 0.75],
+      "notes": "High uncertainty from estimation language and numerical vagueness"
+    },
+    {
+      "id": 5,
+      "category": "uncertainty_medium",
+      "statement": "The global population is likely around 8 billion people",
+      "query": "What is the world population?",
+      "uncertainty_markers": ["likely", "around"],
+      "expected_confidence_range": [0.55, 0.65],
+      "notes": "Medium uncertainty from 'likely' and 'around' qualifiers"
+    },
+    {
+      "id": 6,
+      "category": "uncertainty_low",
+      "statement": "It is confirmed that water boils at 100°C at sea level",
+      "query": "At what temperature does water boil?",
+      "uncertainty_markers": ["confirmed"],
+      "expected_confidence_range": [0.85, 0.95],
+      "notes": "Low uncertainty due to 'confirmed' evidence marker"
+    },
+    {
+      "id": 7,
+      "category": "zero_decay_pure",
+      "statement": "2 + 2 = 4",
+      "query": "What is 2+2?",
+      "is_zero_decay": true,
+      "expected_temporal_decay": 0.0,
+      "expected_paradigm_scope": [],
+      "expected_uncertainty": 1.0,
+      "expected_final_confidence": 1.0,
+      "notes": "Pure zero decay - mathematical truth, no contamination"
+    },
+    {
+      "id": 8,
+      "category": "zero_decay_pure",
+      "statement": "The Pythagorean theorem states a² + b² = c² for right triangles",
+      "query": "What is the Pythagorean theorem?",
+      "is_zero_decay": false,
+      "paradigm_scope": ["euclidean"],
+      "expected_confidence": 1.0,
+      "notes": "Mathematical truth but paradigm-scoped (Euclidean geometry)"
+    },
+    {
+      "id": 9,
+      "category": "paradigm_implicit",
+      "statement": "The wave function collapses upon measurement",
+      "query": "What happens when you measure a quantum system?",
+      "expected_paradigm": ["quantum"],
+      "implicit_paradigm_terms": ["wave function"],
+      "expected_confidence_quantum": 1.0,
+      "notes": "Implicit paradigm scope from quantum-specific terminology"
+    },
+    {
+      "id": 10,
+      "category": "paradigm_implicit",
+      "statement": "Momentum is conserved in an isolated system",
+      "query": "Is momentum conserved?",
+      "expected_paradigm": ["newtonian", "relativistic"],
+      "implicit_paradigm_terms": ["momentum"],
+      "expected_confidence": 1.0,
+      "notes": "Valid in both Newtonian and relativistic frameworks"
+    },
+    {
+      "id": 11,
+      "category": "uncertainty_numerical",
+      "statement": "The age of the universe is 13.8 billion years ± 0.02 billion years",
+      "query": "How old is the universe?",
+      "numerical_uncertainty": "±0.02",
+      "uncertainty_percentage": 0.14,
+      "expected_confidence_range": [0.80, 0.90],
+      "notes": "Quantified numerical uncertainty with ± notation"
+    },
+    {
+      "id": 12,
+      "category": "uncertainty_range",
+      "statement": "The projected economic growth is between 2-3% for next year",
+      "query": "What is the economic growth forecast?",
+      "numerical_uncertainty": "range:2-3",
+      "range_relative_width": 0.33,
+      "expected_confidence_range": [0.60, 0.75],
+      "notes": "Range-based uncertainty with future projection marker"
+    },
+    {
+      "id": 13,
+      "category": "temporal_projection",
+      "statement": "The company is expected to launch the product in Q4",
+      "query": "When will the product launch?",
+      "uncertainty_markers": ["expected to"],
+      "temporal_projection": true,
+      "expected_confidence_range": [0.65, 0.75],
+      "notes": "Future projection with epistemic uncertainty"
+    },
+    {
+      "id": 14,
+      "category": "evidence_quality_high",
+      "statement": "The experiment demonstrated that the hypothesis was correct",
+      "query": "Was the hypothesis validated?",
+      "evidence_markers": ["demonstrated"],
+      "expected_confidence_range": [0.80, 0.90],
+      "notes": "High evidence quality from 'demonstrated'"
+    },
+    {
+      "id": 15,
+      "category": "evidence_quality_low",
+      "statement": "It was allegedly reported that the event occurred",
+      "query": "Did the event happen?",
+      "evidence_markers": ["allegedly", "reported"],
+      "expected_confidence_range": [0.15, 0.25],
+      "notes": "Very low evidence quality from 'allegedly' + 'reported' (multiplicative)"
+    },
+    {
+      "id": 16,
+      "category": "paradigm_conjunctive",
+      "statement": "According to quantum field theory in curved spacetime, particles can be created from vacuum fluctuations",
+      "query": "Can particles be created from vacuum?",
+      "expected_paradigm": ["quantum", "relativistic"],
+      "conjunctive_paradigms": true,
+      "expected_confidence_quantum_only": 0.0,
+      "expected_confidence_both": 1.0,
+      "notes": "Requires BOTH quantum and relativistic paradigms (conjunctive composition)"
+    },
+    {
+      "id": 17,
+      "category": "uncertainty_multiplicative",
+      "statement": "Some researchers think it might possibly be true",
+      "query": "Is this true?",
+      "uncertainty_markers": ["some", "think", "might", "possibly"],
+      "expected_confidence_range": [0.10, 0.20],
+      "notes": "Multiple uncertainty markers multiply: 0.5 × 0.6 × 0.5 × 0.5 = 0.075"
+    },
+    {
+      "id": 18,
+      "category": "paradigm_conditional",
+      "statement": "If we assume a frictionless surface, the object slides indefinitely",
+      "query": "Does the object slide forever?",
+      "conditional_assumption": "frictionless surface",
+      "expected_paradigm_type": "conditional",
+      "expected_confidence_with_assumption": 1.0,
+      "expected_confidence_without_assumption": 0.0,
+      "notes": "Conditional paradigm scoping via 'if we assume'"
+    },
+    {
+      "id": 19,
+      "category": "historical_sealed",
+      "statement": "In 1687, Newton published Principia Mathematica",
+      "query": "When did Newton publish Principia?",
+      "is_historical": true,
+      "expected_temporal_decay": 0.0,
+      "expected_confidence": 1.0,
+      "notes": "Historical fact, causally sealed - zero temporal decay despite age"
+    },
+    {
+      "id": 20,
+      "category": "composite_multi_dimension",
+      "statement": "According to current economic models, the GDP will likely grow by approximately 2-3%",
+      "query": "What is the GDP growth forecast?",
+      "has_paradigm_scope": true,
+      "expected_paradigm": ["neoclassical"],
+      "has_uncertainty": true,
+      "uncertainty_markers": ["likely", "approximately"],
+      "has_numerical_uncertainty": true,
+      "has_temporal_projection": true,
+      "expected_confidence_range": [0.35, 0.50],
+      "notes": "Multi-dimensional: paradigm scoped + uncertainty + numerical range + future projection"
+    },
+    {
+      "id": 21,
+      "category": "paradigm_mismatch_rejection",
+      "statement": "In Newtonian physics, time is absolute and flows uniformly",
+      "query_context": "relativistic physics",
+      "query": "How does time work in relativity?",
+      "expected_paradigm": ["newtonian"],
+      "query_paradigm": ["relativistic"],
+      "expected_confidence": 0.0,
+      "notes": "Paradigm mismatch - Newtonian statement should be rejected in relativistic context"
+    },
+    {
+      "id": 22,
+      "category": "zero_decay_fragile",
+      "statement": "The current estimate is that π equals 3.14159",
+      "query": "What is pi?",
+      "has_zero_decay_component": true,
+      "contamination_source": ["temporal_marker:current", "epistemic:estimate"],
+      "is_contaminated": true,
+      "expected_temporal_decay": 0.05,
+      "expected_uncertainty": 0.8,
+      "expected_final_confidence": 0.65,
+      "notes": "Mathematical constant contaminated by 'current estimate' - fragility demonstration"
+    },
+    {
+      "id": 23,
+      "category": "uncertainty_vague_magnitude",
+      "statement": "Millions of people attended the event",
+      "query": "How many people attended?",
+      "numerical_uncertainty": "vague_magnitude:millions",
+      "expected_confidence_range": [0.65, 0.75],
+      "notes": "Vague magnitude without specific number reduces confidence"
+    },
+    {
+      "id": 24,
+      "category": "paradigm_universal",
+      "statement": "Energy is conserved in physical systems",
+      "query": "Is energy conserved?",
+      "expected_paradigm": [],
+      "is_universally_valid": true,
+      "expected_confidence": 1.0,
+      "notes": "Universal physical law, valid across paradigms (with appropriate formulations)"
+    },
+    {
+      "id": 25,
+      "category": "uncertainty_belief_marker",
+      "statement": "I believe the capital of France is Paris",
+      "query": "What is the capital of France?",
+      "uncertainty_markers": ["believe"],
+      "expected_confidence_range": [0.55, 0.65],
+      "notes": "Belief marker introduces uncertainty despite factual correctness"
+    },
+    {
+      "id": 26,
+      "category": "evidence_confirmed_high",
+      "statement": "It is verified and confirmed that the speed of light is 299,792,458 m/s",
+      "query": "What is the speed of light?",
+      "evidence_markers": ["verified", "confirmed"],
+      "expected_confidence_range": [0.80, 0.95],
+      "notes": "Multiple high-quality evidence markers (multiplicative boost)"
+    },
+    {
+      "id": 27,
+      "category": "paradigm_explicit_qualifier",
+      "statement": "Within the standard model of particle physics, quarks have fractional electric charge",
+      "query": "Do quarks have fractional charge?",
+      "explicit_qualifier": "within",
+      "expected_paradigm": ["standard_model"],
+      "expected_confidence_in_context": 1.0,
+      "notes": "Explicit paradigm qualifier 'within the standard model'"
+    },
+    {
+      "id": 28,
+      "category": "temporal_with_uncertainty",
+      "statement": "The CEO of Amazon is probably Andy Jassy",
+      "query": "Who is the CEO of Amazon?",
+      "has_temporal_decay": true,
+      "has_uncertainty": true,
+      "uncertainty_markers": ["probably"],
+      "temporal_decay_rate": 0.002,
+      "uncertainty_confidence": 0.7,
+      "days_elapsed": 1000,
+      "expected_confidence_range": [0.09, 0.11],
+      "notes": "Temporal decay × uncertainty: e^(-0.002×1000) × 0.7 = 0.135 × 0.7 = 0.095"
+    },
+    {
+      "id": 29,
+      "category": "quantifier_precision_low",
+      "statement": "Most scientists agree that evolution is valid",
+      "query": "Do scientists accept evolution?",
+      "quantifier": "most",
+      "expected_confidence_range": [0.65, 0.75],
+      "notes": "Quantifier 'most' introduces some uncertainty (not 'all')"
+    },
+    {
+      "id": 30,
+      "category": "quantifier_precision_high",
+      "statement": "Exactly 100 participants completed the study",
+      "query": "How many completed the study?",
+      "quantifier": "exactly",
+      "expected_confidence_range": [0.90, 0.98],
+      "notes": "Precise quantifier 'exactly' indicates high confidence"
+    }
+  ]
+}
