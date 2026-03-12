@@ -1,32 +1,9 @@
-﻿================================================================================
-FULL PIPELINE RESULTS: P1  P2  P4  P3
-================================================================================
+﻿python "evaluate_phase4_on_phase2.py" --benchmark ../TempQuestions/cache/benchmarks/verified_specific_date_benchmark.json --use-graph | Out-File -FilePath ../pipeline_results_summary.txt -Encoding utf8
 
-Generated: 2026-03-11 20:30:19
-
-
-python : 
-At line:1 char:29
-+ ... y\Phase 4"; python evaluate_phase4_on_phase2.py --benchmark "../TempQ ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
-Loading weights: 100%|ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê| 103/103 [00:00<00:00, 
-5721.80it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not 
-ok if you expect identical arch.[0m
-Γ£ô Loaded Phase 3 knowledge graph: 62 nodes
+Loaded Phase 3 knowledge graph: 62 nodes
 
 ================================================================================
-FULL PIPELINE: P1 ΓåÆ P2 ΓåÆ P4 ΓåÆ P3
+FULL PIPELINE: P1 -> P2 -> P4 -> P3
 ================================================================================
 Test cases: 153
 Mode: Quiet (large-scale)
@@ -35,8 +12,11 @@ Query source: query (present tense)
 Architecture:
   Phase 1: Temporal decay (document-side)
   Phase 2: Temporal alignment (query-side)
-  Phase 4: Epistemic modulation (╬╗p ├ù ╬╗u ├ù ╬╗d ├ù ╬╗0)
-  Phase 3: Graph override (role queries with confidence ΓëÑ 0.8)
+  Phase 4: Epistemic modulation (paradigm x uncertainty x dependency x zero-decay)
+  Phase 3: Graph override (role queries with adaptive confidence)
+    - High confidence (>=0.8): Always use graph
+    - Medium confidence (0.5-0.8): Use if beats both document scores
+    - Low confidence (<0.5): Ignore, use Phase 4
 
 Processing... 50/153 (32.7%)
 Processing... 100/153 (65.4%)
@@ -48,204 +28,132 @@ RESULTS SUMMARY
 
 Accuracy by Phase:
   Phase 2 (temporal only):           153/153 (100.0%)
-  Phase 4 (integrated P2├ùmodifiers): 151/153 (98.7%)
-  Phase 3 (graph override):          151/153 (98.7%)
+  Phase 4 (integrated P2╫modifiers): 153/153 (100.0%)
+  Phase 3 (graph override):          153/153 (100.0%)
 
-Phase 4 vs Phase 2: -2 cases (-1.3 pts)
+Phase 4 vs Phase 2: +0 cases (+0.0 pts)
 Phase 3 vs Phase 4: +0 cases (+0.0 pts)
 
 Phase-over-Phase Breakdown:
   P4 rescued from P2: 0/153 (0.0%)
-  P4 regressed from P2: 2/153 (1.3%)
+  P4 regressed from P2: 0/153 (0.0%)
   P3 rescued from P4: 0/153 (0.0%)
   P3 regressed from P4: 0/153 (0.0%)
 
 Strategy Distribution:
-  temporal_alignment_preserved: 128 (83.7%)
-  epistemic_modulation     :  24 (15.7%)
-  uncertainty_modulation   :   1 (0.7%)
+  temporal_alignment_preserved: 153 (100.0%)
+
+python "evaluate_phase4_on_phase2.py" --benchmark ../TempQuestions/cache/benchmarks/specific_date_benchmark_large.json --use-graph | Out-File -FilePath ../pipeline_results_summary.txt -Encoding utf8 -Append
+
+Loaded Phase 3 knowledge graph: 62 nodes
 
 ================================================================================
-FINAL FAILURES (2 cases)
+FULL PIPELINE: P1 -> P2 -> P4 -> P3
 ================================================================================
-
-ID: unnamed_103
-Query: Who was the Prime Minister of United Kingdom in 2017?
-Expected: from_2017, Got: from_1993
-  Phase 2: from_2017 (Γ£ô)
-  Phase 4: from_1993 (Γ£ù)
-  Phase 3: from_1993
-  Doc1: P2=1.0902 ├ù 0.500 = 0.5451
-  Doc2: P2=0.6621 ├ù 1.000 = 0.6621
-  Strategy: temporal_alignment_preserved
-
-ID: unnamed_104
-Query: Who was the Prime Minister of United Kingdom in 2017?
-Expected: from_2017, Got: from_2008
-  Phase 2: from_2017 (Γ£ô)
-  Phase 4: from_2008 (Γ£ù)
-  Phase 3: from_2008
-  Doc1: P2=1.0902 ├ù 0.500 = 0.5451
-  Doc2: P2=0.7445 ├ù 1.000 = 0.7445
-  Strategy: temporal_alignment_preserved
-
-python : 
-At line:1 char:29
-+ ... y\Phase 4"; python evaluate_phase4_on_phase2.py --benchmark "../TempQ ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
-Loading weights: 100%|ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê| 103/103 [00:00<00:00, 
-5016.24it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not 
-ok if you expect identical arch.[0m
-Γ£ô Loaded Phase 3 knowledge graph: 62 nodes
-
-================================================================================
-FULL PIPELINE: P1 ΓåÆ P2 ΓåÆ P4 ΓåÆ P3
-================================================================================
-Test cases: 15
+Test cases: 61
 Mode: Quiet (large-scale)
 Query source: query (present tense)
 
 Architecture:
   Phase 1: Temporal decay (document-side)
   Phase 2: Temporal alignment (query-side)
-  Phase 4: Epistemic modulation (╬╗p ├ù ╬╗u ├ù ╬╗d ├ù ╬╗0)
-  Phase 3: Graph override (role queries with confidence ΓëÑ 0.8)
+  Phase 4: Epistemic modulation (paradigm x uncertainty x dependency x zero-decay)
+  Phase 3: Graph override (role queries with adaptive confidence)
+    - High confidence (>=0.8): Always use graph
+    - Medium confidence (0.5-0.8): Use if beats both document scores
+    - Low confidence (<0.5): Ignore, use Phase 4
 
+Processing... 50/61 (82.0%)
 
 ================================================================================
 RESULTS SUMMARY
 ================================================================================
 
 Accuracy by Phase:
-  Phase 2 (temporal only):           7/15 (46.7%)
-  Phase 4 (integrated P2├ùmodifiers): 8/15 (53.3%)
-  Phase 3 (graph override):          8/15 (53.3%)
+  Phase 2 (temporal only):           55/61 (90.2%)
+  Phase 4 (integrated P2╫modifiers): 55/61 (90.2%)
+  Phase 3 (graph override):          55/61 (90.2%)
 
-Phase 4 vs Phase 2: +1 cases (+6.7 pts)
+Phase 4 vs Phase 2: +0 cases (+0.0 pts)
 Phase 3 vs Phase 4: +0 cases (+0.0 pts)
 
 Phase-over-Phase Breakdown:
-  P4 rescued from P2: 1/15 (6.7%)
-  P4 regressed from P2: 0/15 (0.0%)
-  P3 rescued from P4: 0/15 (0.0%)
-  P3 regressed from P4: 0/15 (0.0%)
+  P4 rescued from P2: 0/61 (0.0%)
+  P4 regressed from P2: 0/61 (0.0%)
+  P3 rescued from P4: 0/61 (0.0%)
+  P3 regressed from P4: 0/61 (0.0%)
 
 Strategy Distribution:
-  temporal_alignment_preserved:  11 (73.3%)
-  epistemic_modulation     :   2 (13.3%)
-  uncertainty_modulation   :   2 (13.3%)
+  temporal_alignment_preserved:  61 (100.0%)
 
 ================================================================================
-FINAL FAILURES (7 cases)
+FINAL FAILURES (6 cases)
 ================================================================================
 
-ID: unnamed_2
-Query: The current CEO was the founder in 1998.
-Expected: clean_historical, Got: contradictory_tense
-  Phase 2: contradictory_tense (Γ£ù)
-  Phase 4: contradictory_tense (Γ£ù)
-  Phase 3: contradictory_tense
-  Doc1: P2=0.7404 ├ù 1.000 = 0.7404
-  Doc2: P2=0.6727 ├ù 1.000 = 0.6727
-  Strategy: epistemic_modulation
-
-ID: unnamed_3
-Query: Who is the former President?
-Expected: current_president, Got: former_role_confusion
-  Phase 2: former_role_confusion (Γ£ù)
-  Phase 4: former_role_confusion (Γ£ù)
-  Phase 3: former_role_confusion
-  Doc1: P2=0.7231 ├ù 1.000 = 0.7231
-  Doc2: P2=0.5684 ├ù 1.000 = 0.5684
+ID: unnamed_7
+Query: Who was the CEO of Amazon in 2021?
+Expected: from_2021, Got: from_2024
+  Phase 2: from_2024 (FAIL)
+  Phase 4: from_2024 (FAIL)
+  Phase 3: from_2024
+  Doc1: P2=0.5796 x 1.000 = 0.5796
+  Doc2: P2=0.5851 x 1.000 = 0.5851
   Strategy: temporal_alignment_preserved
-
-ID: unnamed_6
-Query: Who was the US President while Steve Jobs was the CEO of Apple?
-Expected: clinton_1998, Got: trump_2018
-  Phase 2: trump_2018 (Γ£ù)
-  Phase 4: trump_2018 (Γ£ù)
-  Phase 3: trump_2018
-  Doc1: P2=0.6506 ├ù 1.000 = 0.6506
-  Doc2: P2=0.6618 ├ù 1.000 = 0.6618
-  Strategy: temporal_alignment_preserved
-
-ID: unnamed_8
-Query: Give me a 1990s perspective on the future of the internet.
-Expected: 1995_perspective, Got: 2024_retrospective
-  Phase 2: 2024_retrospective (Γ£ù)
-  Phase 4: 2024_retrospective (Γ£ù)
-  Phase 3: 2024_retrospective
-  Doc1: P2=0.4543 ├ù 0.700 = 0.3180
-  Doc2: P2=0.6220 ├ù 0.600 = 0.3732
-  Strategy: uncertainty_modulation
 
 ID: unnamed_9
-Query: In a vacuum, light travels at approximately 299,792,458 m/s.
-Expected: conditional_physical_law, Got: unconditional_law
-  Phase 2: unconditional_law (Γ£ù)
-  Phase 4: unconditional_law (Γ£ù)
-  Phase 3: unconditional_law
-  Doc1: P2=0.6632 ├ù 0.722 = 0.4791
-  Doc2: P2=0.8649 ├ù 1.000 = 0.8649
+Query: Who was the CEO of Google in 2001?
+Expected: from_2001, Got: from_1998
+  Phase 2: from_1998 (FAIL)
+  Phase 4: from_1998 (FAIL)
+  Phase 3: from_1998
+  Doc1: P2=0.4860 x 1.000 = 0.4860
+  Doc2: P2=0.6270 x 1.000 = 0.6270
   Strategy: temporal_alignment_preserved
 
-ID: unnamed_10
-Query: Do parallel lines meet in geometry?
-Expected: euclidean_geometry, Got: non_euclidean_geometry
-  Phase 2: non_euclidean_geometry (Γ£ù)
-  Phase 4: non_euclidean_geometry (Γ£ù)
-  Phase 3: non_euclidean_geometry
-  Doc1: P2=0.6247 ├ù 1.000 = 0.6247
-  Doc2: P2=0.6448 ├ù 1.000 = 0.6448
+ID: unnamed_26
+Query: Who was France's President in 2007?
+Expected: from_2007, Got: from_2012
+  Phase 2: from_2012 (FAIL)
+  Phase 4: from_2012 (FAIL)
+  Phase 3: from_2012
+  Doc1: P2=0.4250 x 1.000 = 0.4250
+  Doc2: P2=0.4881 x 1.000 = 0.4881
   Strategy: temporal_alignment_preserved
 
-ID: unnamed_13
-Query: The CEO announced quarterly earnings that exceeded expectations.
-Expected: specific_fact, Got: vague_temporal
-  Phase 2: vague_temporal (Γ£ù)
-  Phase 4: vague_temporal (Γ£ù)
-  Phase 3: vague_temporal
-  Doc1: P2=1.0000 ├ù 1.000 = 1.0000
-  Doc2: P2=0.7472 ├ù 1.000 = 0.7472
+ID: unnamed_30
+Query: Who was the CEO of Twitter or X in 2008?
+Expected: from_2008, Got: from_2006
+  Phase 2: from_2006 (FAIL)
+  Phase 4: from_2006 (FAIL)
+  Phase 3: from_2006
+  Doc1: P2=0.4872 x 1.000 = 0.4872
+  Doc2: P2=0.5407 x 1.000 = 0.5407
   Strategy: temporal_alignment_preserved
 
+ID: unnamed_31
+Query: Who was the CEO of Twitter or X in 2010?
+Expected: from_2010, Got: from_2006
+  Phase 2: from_2006 (FAIL)
+  Phase 4: from_2006 (FAIL)
+  Phase 3: from_2006
+  Doc1: P2=0.4702 x 1.000 = 0.4702
+  Doc2: P2=0.5138 x 1.000 = 0.5138
+  Strategy: temporal_alignment_preserved
 
+ID: unnamed_36
+Query: Who was the CEO of Netflix in 2020?
+Expected: from_2020, Got: from_2023
+  Phase 2: from_2023 (FAIL)
+  Phase 4: from_2023 (FAIL)
+  Phase 3: from_2023
+  Doc1: P2=0.4782 x 1.000 = 0.4782
+  Doc2: P2=0.4830 x 1.000 = 0.4830
+  Strategy: temporal_alignment_preserved
+  
+python "evaluate_phase4_on_phase2.py" --benchmark ../TempQuestions/cache/benchmarks/fuzzy_logic_benchmark.json --use-graph | Out-File -FilePath ../pipeline_results_summary.txt -Encoding utf8 -Append  Loaded Phase 3 knowledge graph: 62 nodes
 
 ================================================================================
-
-python : 
-At line:1 char:29
-+ ... y\Phase 4"; python evaluate_phase4_on_phase2.py --benchmark "../TempQ ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
-Loading weights: 100%|ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê| 103/103 [00:00<00:00, 
-8570.16it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not 
-ok if you expect identical arch.[0m
-Γ£ô Loaded Phase 3 knowledge graph: 62 nodes
-
-================================================================================
-FULL PIPELINE: P1 ΓåÆ P2 ΓåÆ P4 ΓåÆ P3
+FULL PIPELINE: P1 -> P2 -> P4 -> P3
 ================================================================================
 Test cases: 10
 Mode: Quiet (large-scale)
@@ -254,8 +162,11 @@ Query source: query (present tense)
 Architecture:
   Phase 1: Temporal decay (document-side)
   Phase 2: Temporal alignment (query-side)
-  Phase 4: Epistemic modulation (╬╗p ├ù ╬╗u ├ù ╬╗d ├ù ╬╗0)
-  Phase 3: Graph override (role queries with confidence ΓëÑ 0.8)
+  Phase 4: Epistemic modulation (paradigm x uncertainty x dependency x zero-decay)
+  Phase 3: Graph override (role queries with adaptive confidence)
+    - High confidence (>=0.8): Always use graph
+    - Medium confidence (0.5-0.8): Use if beats both document scores
+    - Low confidence (<0.5): Ignore, use Phase 4
 
 
 ================================================================================
@@ -264,7 +175,7 @@ RESULTS SUMMARY
 
 Accuracy by Phase:
   Phase 2 (temporal only):           8/10 (80.0%)
-  Phase 4 (integrated P2├ùmodifiers): 8/10 (80.0%)
+  Phase 4 (integrated P2╫modifiers): 8/10 (80.0%)
   Phase 3 (graph override):          8/10 (80.0%)
 
 Phase 4 vs Phase 2: +0 cases (+0.0 pts)
@@ -277,9 +188,7 @@ Phase-over-Phase Breakdown:
   P3 regressed from P4: 0/10 (0.0%)
 
 Strategy Distribution:
-  epistemic_modulation     :   5 (50.0%)
-  temporal_alignment_preserved:   4 (40.0%)
-  uncertainty_modulation   :   1 (10.0%)
+  temporal_alignment_preserved:  10 (100.0%)
 
 ================================================================================
 FINAL FAILURES (2 cases)
@@ -288,48 +197,29 @@ FINAL FAILURES (2 cases)
 ID: unnamed_1
 Query: The current CEO knows the Pythagorean theorem is always true.
 Expected: pure_mathematical, Got: contaminated_zero_decay
-  Phase 2: contaminated_zero_decay (Γ£ù)
-  Phase 4: contaminated_zero_decay (Γ£ù)
+  Phase 2: contaminated_zero_decay (FAIL)
+  Phase 4: contaminated_zero_decay (FAIL)
   Phase 3: contaminated_zero_decay
-  Doc1: P2=0.9966 ├ù 1.000 = 0.9966
-  Doc2: P2=0.7713 ├ù 1.000 = 0.7713
+  Doc1: P2=0.9966 x 1.000 = 0.9966
+  Doc2: P2=0.7713 x 1.000 = 0.7713
   Strategy: temporal_alignment_preserved
 
 ID: unnamed_3
 Query: Who leads the company since Tim Cook's departure?
 Expected: post_transition_ceo, Got: tim_cook_era
-  Phase 2: tim_cook_era (Γ£ù)
-  Phase 4: tim_cook_era (Γ£ù)
+  Phase 2: tim_cook_era (FAIL)
+  Phase 4: tim_cook_era (FAIL)
   Phase 3: tim_cook_era
-  Doc1: P2=1.1450 ├ù 1.000 = 1.1450
-  Doc2: P2=1.1686 ├ù 1.000 = 1.1686
-  Strategy: epistemic_modulation
+  Doc1: P2=1.1450 x 1.000 = 1.1450
+  Doc2: P2=1.1685 x 1.000 = 1.1685
+  Strategy: temporal_alignment_preserved
 
+python "evaluate_phase4_on_phase2.py" --benchmark ../TempQuestions/cache/benchmarks/tempquestions_retrieval_large.json --use-graph | Out-File -FilePath ../pipeline_results_summary.txt -Encoding utf8 -Append
 
-
-================================================================================
-
-python : 
-At line:1 char:29
-+ ... y\Phase 4"; python evaluate_phase4_on_phase2.py --benchmark "../TempQ ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
-Loading weights: 100%|ΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûêΓûê| 103/103 [00:00<00:00, 8583.27it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not 
-ok if you expect identical arch.[0m
-Γ£ô Loaded Phase 3 knowledge graph: 62 nodes
+Loaded Phase 3 knowledge graph: 62 nodes
 
 ================================================================================
-FULL PIPELINE: P1 ΓåÆ P2 ΓåÆ P4 ΓåÆ P3
+FULL PIPELINE: P1 -> P2 -> P4 -> P3
 ================================================================================
 Test cases: 1740
 Mode: Quiet (large-scale)
@@ -338,8 +228,11 @@ Query source: query (present tense)
 Architecture:
   Phase 1: Temporal decay (document-side)
   Phase 2: Temporal alignment (query-side)
-  Phase 4: Epistemic modulation (╬╗p ├ù ╬╗u ├ù ╬╗d ├ù ╬╗0)
-  Phase 3: Graph override (role queries with confidence ΓëÑ 0.8)
+  Phase 4: Epistemic modulation (paradigm x uncertainty x dependency x zero-decay)
+  Phase 3: Graph override (role queries with adaptive confidence)
+    - High confidence (>=0.8): Always use graph
+    - Medium confidence (0.5-0.8): Use if beats both document scores
+    - Low confidence (<0.5): Ignore, use Phase 4
 
 Processing... 50/1740 (2.9%)
 Processing... 100/1740 (5.7%)
@@ -382,7 +275,7 @@ RESULTS SUMMARY
 
 Accuracy by Phase:
   Phase 2 (temporal only):           1602/1740 (92.1%)
-  Phase 4 (integrated P2├ùmodifiers): 1602/1740 (92.1%)
+  Phase 4 (integrated P2╫modifiers): 1602/1740 (92.1%)
   Phase 3 (graph override):          1602/1740 (92.1%)
 
 Phase 4 vs Phase 2: +0 cases (+0.0 pts)
@@ -395,110 +288,113 @@ Phase-over-Phase Breakdown:
   P3 regressed from P4: 0/1740 (0.0%)
 
 Strategy Distribution:
-  epistemic_modulation     : 1740 (100.0%)
+  temporal_alignment_preserved: 1740 (100.0%)
 
 (138 failures - too many to display individually)
 
+python "evaluate_phase4_on_phase2.py" --benchmark ../TempQuestions/cache/benchmarks/edge_cases_benchmark.json.json --use-graph | Out-File -FilePath ../pipeline_results_summary.txt -Encoding utf8 -Append   
+
+Loaded Phase 3 knowledge graph: 62 nodes
+
+================================================================================
+FULL PIPELINE: P1 -> P2 -> P4 -> P3
+================================================================================
+Test cases: 15
+Mode: Quiet (large-scale)
+Query source: query (present tense)
+
+Architecture:
+  Phase 1: Temporal decay (document-side)
+  Phase 2: Temporal alignment (query-side)
+  Phase 4: Epistemic modulation (paradigm x uncertainty x dependency x zero-decay)
+  Phase 3: Graph override (role queries with adaptive confidence)
+    - High confidence (>=0.8): Always use graph
+    - Medium confidence (0.5-0.8): Use if beats both document scores
+    - Low confidence (<0.5): Ignore, use Phase 4
 
 
 ================================================================================
-
-python : Traceback (most recent call last):
-At line:1 char:29
-+ ... y\Phase 4"; python evaluate_phase4.py --benchmark epistemic_benchmark ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::Strin 
-   g) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-  File "E:\test\decay\Phase 4\evaluate_phase4.py", line 436, in <module>
-    results = evaluate_benchmark(args.benchmark, verbose=args.verbose)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\test\decay\Phase 4\evaluate_phase4.py", line 204, in evaluate_benchmark
-    benchmark = load_benchmark(benchmark_path)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\test\decay\Phase 4\evaluate_phase4.py", line 22, in load_benchmark
-    with open(filepath, 'r', encoding='utf-8') as f:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: 'epistemic_benchmark.json'
-
-
-
-================================================================================
-OVERALL SUMMARY
+RESULTS SUMMARY
 ================================================================================
 
+Accuracy by Phase:
+  Phase 2 (temporal only):           7/15 (46.7%)
+  Phase 4 (integrated P2╫modifiers): 8/15 (53.3%)
+  Phase 3 (graph override):          9/15 (60.0%)
 
-FULL PIPELINE ARCHITECTURE: P1  P2  P4  P3
+Phase 4 vs Phase 2: +1 cases (+6.7 pts)
+Phase 3 vs Phase 4: +1 cases (+6.7 pts)
 
-Phase 1: Temporal decay (document-side λt)
-Phase 2: Temporal alignment (query-side)
-Phase 4: Epistemic modulation (λp  λu  λd  λ0)
-Phase 3: Graph override (role queries with confidence  0.8)
+Phase-over-Phase Breakdown:
+  P4 rescued from P2: 1/15 (6.7%)
+  P4 regressed from P2: 0/15 (0.0%)
+  P3 rescued from P4: 1/15 (6.7%)
+  P3 regressed from P4: 0/15 (0.0%)
 
-BENCHMARK RESULTS:
+Strategy Distribution:
+  temporal_alignment_preserved:  12 (80.0%)
+  uncertainty_modulation   :   3 (20.0%)
 
-1. Verified Benchmark (153 cases)
-   - Phase 2: 153/153 (100.0%)
-   - Phase 4: 151/153 (98.7%) [-2 cases vs P2]
-   - Phase 3: 151/153 (98.7%) [+0 cases vs P4]
+================================================================================
+FINAL FAILURES (6 cases)
+================================================================================
 
-2. Edge Cases (15 cases)
-   - Phase 2: 7/15 (46.7%)
-   - Phase 4: 8/15 (53.3%) [+1 case vs P2]
-   - Phase 3: 8/15 (53.3%) [+0 cases vs P4]
+ID: unnamed_2
+Query: The current CEO was the founder in 1998.
+Expected: clean_historical, Got: contradictory_tense
+  Phase 2: contradictory_tense (FAIL)
+  Phase 4: contradictory_tense (FAIL)
+  Phase 3: contradictory_tense
+  Doc1: P2=0.7403 x 1.000 = 0.7403
+  Doc2: P2=0.6727 x 1.000 = 0.6727
+  Strategy: temporal_alignment_preserved
 
-3. Fuzzy Logic (10 cases)
-   - Phase 2: 8/10 (80.0%)
-   - Phase 4: 8/10 (80.0%) [+0 cases vs P2]
-   - Phase 3: 8/10 (80.0%) [+0 cases vs P4]
+ID: unnamed_3
+Query: Who is the former President?
+Expected: current_president, Got: former_role_confusion
+  Phase 2: former_role_confusion (FAIL)
+  Phase 4: former_role_confusion (FAIL)
+  Phase 3: former_role_confusion
+  Doc1: P2=0.7230 x 1.000 = 0.7230
+  Doc2: P2=0.5681 x 1.000 = 0.5681
+  Strategy: temporal_alignment_preserved
 
-4. TempQuestions (1,740 cases - large-scale temporal queries)
-   - Phase 2: 1602/1740 (92.1%)
-   - Phase 4: 1602/1740 (92.1%) [+0 cases vs P2]
-   - Phase 3: 1602/1740 (92.1%) [+0 cases vs P4]
+ID: unnamed_8
+Query: Give me a 1990s perspective on the future of the internet.
+Expected: 1995_perspective, Got: 2024_retrospective
+  Phase 2: 2024_retrospective (FAIL)
+  Phase 4: 2024_retrospective (FAIL)
+  Phase 3: 2024_retrospective
+  Doc1: P2=0.4543 x 0.700 = 0.3180
+  Doc2: P2=0.6220 x 0.600 = 0.3732
+  Strategy: temporal_alignment_preserved
 
-5. Standalone Phase 4 (30 cases - epistemic dimensions only)
-   - Accuracy: 19/30 (63.3%)
+ID: unnamed_9
+Query: In a vacuum, light travels at approximately 299,792,458 m/s.
+Expected: conditional_physical_law, Got: unconditional_law
+  Phase 2: unconditional_law (FAIL)
+  Phase 4: unconditional_law (FAIL)
+  Phase 3: unconditional_law
+  Doc1: P2=0.6632 x 0.722 = 0.4791
+  Doc2: P2=0.8649 x 1.000 = 0.8649
+  Strategy: uncertainty_modulation
 
-KEY INSIGHTS:
-- Phase 4 epistemic modulation adds nuance to temporal alignment
-- Phase 3 graph override activates only for role succession queries
-- TempQuestions: 0 regressions - epistemic modulation preserves Phase 2 accuracy
-- Strategy: 100% epistemic_modulation on TempQuestions (all queries processed)
-- These benchmarks focus on temporal/epistemic, not role relationships
-- Full pipeline preserves temporal signal while adding epistemic depth
+ID: unnamed_10
+Query: Do parallel lines meet in geometry?
+Expected: euclidean_geometry, Got: non_euclidean_geometry
+  Phase 2: non_euclidean_geometry (FAIL)
+  Phase 4: non_euclidean_geometry (FAIL)
+  Phase 3: non_euclidean_geometry
+  Doc1: P2=0.6247 x 1.000 = 0.6247
+  Doc2: P2=0.6448 x 1.000 = 0.6448
+  Strategy: temporal_alignment_preserved
 
-REGRESSIONS ROOT CAUSE (Verified Benchmark: -2 cases → FIXED ✅):
-- Both failures: "Who was the Prime Minister of the United Kingdom in 2017?"
-- OLD behavior: Phase 4 was DOCUMENT-DRIVEN (analyzed document text for epistemic markers)
-  - Correct document (from 2017): Contained hedging/paradigm qualifiers → received 0.5× penalty
-  - Wrong documents: No epistemic markers → kept 1.0× full score
-  - Result: Wrong documents outscored correct document
-- Problem: Query was straightforward (no uncertainty markers), but Phase 4 penalized documents for their own phrasing
-
-✅ FIX IMPLEMENTED (2026-03-11):
-- Made epistemic modulation QUERY-DRIVEN (check query FIRST before analyzing documents)
-- Created query_epistemic_detection.py with should_apply_epistemic_modulation()
-- If query is clean → epistemic_modifier = 1.0 (preserve Phase 2 score)
-- If query has markers → apply document-side epistemic analysis
-
-✅ RESULT AFTER FIX:
-- Verified benchmark: 153/153 (100.0%) - 0 regressions
-- Strategy: 100% temporal_alignment_preserved (epistemic modulation skipped for all queries)
-- Expected: Epistemic modulation only activates when query contains uncertainty/paradigm markers
-
-IMMEDIATE FIXES COMPLETED:
-1. ✅ Query-aware epistemic modulation (check query FIRST before analyzing documents)
-2. ✅ Expand paradigm vocabulary (25+ paradigms, 150+ terms across physics, economics, psychology, etc.)
-3. ✅ Implement numerical uncertainty parsing (±, "approximately", ranges, margins of error)
-4. ✅ Calibrate multiplicative composition of uncertainty markers (already implemented)
-
-PHASE 3 EXPANSION COMPLETED:
-1. ✅ Add temporal joins (find overlapping intervals between two roles)
-   - get_role_interval(): Get time interval when entity held role
-   - get_role_holders_in_interval(): Find all role holders during time period
-   - find_temporal_overlap(): Calculate precise overlap between two roles
-   - get_successors()/get_predecessors(): Navigate succession chains
-2. ⏳ Support more query types ("after", "before", "during") - methods ready, need query parser integration
-3. ⏳ Populate graph: 62 nodes → 500+ nodes (tech companies, countries, multiple roles) - future work
+ID: unnamed_13
+Query: The CEO announced quarterly earnings that exceeded expectations.
+Expected: specific_fact, Got: vague_temporal
+  Phase 2: vague_temporal (FAIL)
+  Phase 4: vague_temporal (FAIL)
+  Phase 3: vague_temporal
+  Doc1: P2=1.0000 x 1.000 = 1.0000
+  Doc2: P2=0.7472 x 1.000 = 0.7472
+  Strategy: temporal_alignment_preserved
