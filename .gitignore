@@ -15,3 +15,5 @@ TempQuestions/cache/benchmarks/tempquestions_retrieval_large.json
 # Keep curated benchmarks:
 # - TempQuestions/cache/benchmarks/specific_date_benchmark_large.json
 # - TempQuestions/cache/benchmarks/verified_specific_date_benchmark.json
+
+epistemic_decay_paper.md

@@ -1,7 +1,7 @@
 ﻿================================================================================
 FULL PIPELINE BENCHMARK RESULTS
 ================================================================================
-Generated: March 12, 2026
+Generated: March 13, 2026
 Pipeline: Phase 1 → Phase 2 → Phase 4 → Phase 3
 
 Recent Enhancements:
@@ -70,7 +70,7 @@ Expected: pure_mathematical, Got: contaminated_zero_decay
   Phase 4: contaminated_zero_decay (FAIL)
   Phase 3: contaminated_zero_decay
   Doc1: P2=0.9966 x 1.000 = 0.9966
-  Doc2: P2=0.7713 x 1.000 = 0.7713
+  Doc2: P2=0.7712 x 1.000 = 0.7712
   Strategy: temporal_alignment_preserved
 
 ID: unnamed_3
@@ -79,8 +79,8 @@ Expected: post_transition_ceo, Got: tim_cook_era
   Phase 2: tim_cook_era (FAIL)
   Phase 4: tim_cook_era (FAIL)
   Phase 3: tim_cook_era
-  Doc1: P2=1.1450 x 1.000 = 1.1450
-  Doc2: P2=1.1685 x 1.000 = 1.1685
+  Doc1: P2=1.1449 x 1.000 = 1.1449
+  Doc2: P2=1.1684 x 1.000 = 1.1684
   Strategy: temporal_alignment_preserved
 
 python "evaluate_phase4_on_phase2.py" --benchmark ../TempQuestions/cache/benchmarks/edge_cases_benchmark.json --use-graph | Out-File -FilePath ../pipeline_results_summary.txt -Encoding utf8 -Append
